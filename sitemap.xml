@@ -2,27 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.geekcn.cn/tasks/task/</loc>
+    <loc>https://www.geekcn.cn/tasks/task02/</loc>
     
-    <lastmod>2022-11-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task05/</loc>
-    
-    <lastmod>2022-11-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task04/</loc>
-    
-    <lastmod>2022-11-26</lastmod>
+    <lastmod>2022-11-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -31,16 +13,25 @@
   <url>
     <loc>https://www.geekcn.cn/tasks/task03/</loc>
     
-    <lastmod>2022-11-26</lastmod>
+    <lastmod>2022-11-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.geekcn.cn/tasks/task02/</loc>
+    <loc>https://www.geekcn.cn/tasks/task04/</loc>
     
-    <lastmod>2022-11-26</lastmod>
+    <lastmod>2022-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task05/</loc>
+    
+    <lastmod>2022-11-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +40,16 @@
   <url>
     <loc>https://www.geekcn.cn/tasks/task01/</loc>
     
-    <lastmod>2022-11-26</lastmod>
+    <lastmod>2022-11-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task/</loc>
+    
+    <lastmod>2022-11-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
