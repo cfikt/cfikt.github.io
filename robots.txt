@@ -12,4 +12,5 @@ Disallow: /js/
 Disallow: /css/
 Disallow: /lib/
 
-Sitemap: http://www.geekcn.cn/baidusitemap.xml
+Sitemap: https://www.geekcn.cn/baidusitemap.xml
+Sitemap: https://www.geekcn.cn/sitemap.xml
