@@ -53,9 +53,9 @@ div#category {
 }
 
 /* 页脚透明 */
-#footer {
+/* #footer {
     background: transparent!important;
-}
+} */
 
 /* 头图遮罩层透明 */
 #page-header::before{
