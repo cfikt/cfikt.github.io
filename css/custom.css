@@ -10,6 +10,7 @@
 /* 文章页面正文背景 */
 div#post {
     background: rgba(255, 255, 255);
+    font-size: 15px;
 }
 [data-theme="dark"]
 div#post {
@@ -94,5 +95,19 @@ b, strong {
 /* 间距 */
 #article-container p {
     margin: 0 0 10px;
-    line-height: 20px;
+    line-height: 24px;
+}
+
+/* H2 缩进 */
+#article-container.post-content h2 {
+    padding-left: 10px;
+}
+
+/* 字体颜色 */
+#article-container p {
+    color: #000;
+}
+[data-theme="dark"]
+#article-container p {
+    color: rgb(255 255 255 / 90%);
 }
