@@ -1,4 +1,4 @@
-/* @font-face {
+@font-face {
     font-family: 'HarmonyOS Sans SC Medium';
     font-display: swap;
     src: url('https://gitee.com/cfikt/cfikt/blob/master/HarmonyOS_Sans_SC_Medium.ttf') format("truetype");
@@ -8,7 +8,7 @@
     font-family: 'KTXP-Booking-Serif';
     font-display: swap;
     src: url('https://gitee.com/cfikt/cfikt/blob/master/KTXP-Booking-Serif.ttf') format("truetype");
-} */
+}
 
 @font-face {
     font-family: 'Cousine-Regular-1';
