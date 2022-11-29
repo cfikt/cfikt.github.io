@@ -90,3 +90,9 @@ div#category {
 b, strong {
     color: #26D;
 }
+
+/* 间距 */
+#article-container p {
+    margin: 0 0 10px;
+    line-height: 20px;
+}
