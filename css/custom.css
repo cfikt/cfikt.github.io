@@ -155,3 +155,7 @@ blockquote {
 #aside-content .card-widget {
     font-family: 'HarmonyOS Sans SC Medium';
 }
+/* 首页卡片 */
+#recent-posts > .recent-post-item:not(:first-child) {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
