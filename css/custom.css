@@ -134,8 +134,3 @@ b, strong {
     border-width: 8px;
     border-color: #d2d2d2;
 }
-
-
-#article-container pre, #article-container code {
-    font-family: Cousine-Regular-1, "HarmonyOS Sans SC Medium";
-}
