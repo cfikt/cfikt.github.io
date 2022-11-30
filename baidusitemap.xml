@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.geekcn.cn/openvpn/openvpn02/</loc>
+    <loc>https://www.geekcn.cn/blog/blog01/</loc>
+    <lastmod>2022-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task/</loc>
+    <lastmod>2022-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task06/</loc>
+    <lastmod>2022-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task02/</loc>
+    <lastmod>2022-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task05/</loc>
+    <lastmod>2022-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task04/</loc>
+    <lastmod>2022-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task03/</loc>
+    <lastmod>2022-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task01/</loc>
     <lastmod>2022-11-30</lastmod>
   </url>
   <url>
@@ -13,39 +41,11 @@
     <lastmod>2022-11-30</lastmod>
   </url>
   <url>
-    <loc>https://www.geekcn.cn/tasks/task/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task01/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task05/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task04/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task03/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task06/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task02/</loc>
-    <lastmod>2022-11-29</lastmod>
+    <loc>https://www.geekcn.cn/openvpn/openvpn02/</loc>
+    <lastmod>2022-11-30</lastmod>
   </url>
   <url>
     <loc>https://www.geekcn.cn/openvpn/openvpn03/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/blog/blog01/</loc>
-    <lastmod>2022-11-29</lastmod>
+    <lastmod>2022-11-30</lastmod>
   </url>
 </urlset> 

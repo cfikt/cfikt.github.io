@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>butterfly主题使用文档</title>
+      <title>butterfly 主题使用文档</title>
       <link href="/blog/blog01/"/>
       <url>/blog/blog01/</url>
       
@@ -33,16 +33,16 @@
     
     
     <entry>
-      <title>云计算SRE运维 — 作业集</title>
+      <title>云计算 SRE 运维 — 作业集</title>
       <link href="/tasks/task/"/>
       <url>/tasks/task/</url>
       
-        <content type="html"><![CDATA[<p><a href="http://www.geekcn.cn/tasks/task01/" title="云计算SRE运维 — 第一周">云计算SRE运维 — 第一周</a></p><p><a href="http://www.geekcn.cn/tasks/task02/" title="云计算SRE运维 — 第二周">云计算SRE运维 — 第二周</a></p><p><a href="http://www.geekcn.cn/tasks/task03/" title="云计算SRE运维 — 第三周">云计算SRE运维 — 第三周</a></p><p><a href="http://www.geekcn.cn/tasks/task04/" title="云计算SRE运维 — 第四周">云计算SRE运维 — 第四周</a></p><p><a href="http://www.geekcn.cn/tasks/task05/" title="云计算SRE运维 — 第五周">云计算SRE运维 — 第五周</a></p><p><a href="http://www.geekcn.cn/tasks/task06/" title="云计算SRE运维 — 第六周">云计算SRE运维 — 第六周</a></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="http://www.geekcn.cn/tasks/task01/" title="云计算SRE运维 — 第一周">云计算 SRE 运维 — 第一周</a></p><p><a href="http://www.geekcn.cn/tasks/task02/" title="云计算SRE运维 — 第二周">云计算 SRE 运维 — 第二周</a></p><p><a href="http://www.geekcn.cn/tasks/task03/" title="云计算SRE运维 — 第三周">云计算 SRE 运维 — 第三周</a></p><p><a href="http://www.geekcn.cn/tasks/task04/" title="云计算SRE运维 — 第四周">云计算 SRE 运维 — 第四周</a></p><p><a href="http://www.geekcn.cn/tasks/task05/" title="云计算SRE运维 — 第五周">云计算 SRE 运维 — 第五周</a></p><p><a href="http://www.geekcn.cn/tasks/task06/" title="云计算SRE运维 — 第六周">云计算 SRE 运维 — 第六周</a></p>]]></content>
       
       
       <categories>
           
-          <category> 云计算SRE运维 - 作业集 </category>
+          <category> 云计算 SRE 运维 - 作业集 </category>
           
       </categories>
       
@@ -64,7 +64,7 @@
     
     
     <entry>
-      <title>云计算SRE运维 — 第六周</title>
+      <title>云计算 SRE 运维 — 第六周</title>
       <link href="/tasks/task06/"/>
       <url>/tasks/task06/</url>
       
@@ -73,7 +73,7 @@
       
       <categories>
           
-          <category> 云计算SRE运维 - 作业集 </category>
+          <category> 云计算 SRE 运维 - 作业集 </category>
           
       </categories>
       
@@ -95,7 +95,7 @@
     
     
     <entry>
-      <title>云计算SRE运维 — 第五周</title>
+      <title>云计算 SRE 运维 — 第五周</title>
       <link href="/tasks/task05/"/>
       <url>/tasks/task05/</url>
       
@@ -104,7 +104,7 @@
       
       <categories>
           
-          <category> 云计算SRE运维 - 作业集 </category>
+          <category> 云计算 SRE 运维 - 作业集 </category>
           
       </categories>
       
@@ -126,7 +126,7 @@
     
     
     <entry>
-      <title>云计算SRE运维 — 第四周</title>
+      <title>云计算 SRE 运维 — 第四周</title>
       <link href="/tasks/task04/"/>
       <url>/tasks/task04/</url>
       
@@ -135,7 +135,7 @@
       
       <categories>
           
-          <category> 云计算SRE运维 - 作业集 </category>
+          <category> 云计算 SRE 运维 - 作业集 </category>
           
       </categories>
       
@@ -157,7 +157,7 @@
     
     
     <entry>
-      <title>云计算SRE运维 — 第三周</title>
+      <title>云计算 SRE 运维 — 第三周</title>
       <link href="/tasks/task03/"/>
       <url>/tasks/task03/</url>
       
@@ -166,7 +166,7 @@
       
       <categories>
           
-          <category> 云计算SRE运维 - 作业集 </category>
+          <category> 云计算 SRE 运维 - 作业集 </category>
           
       </categories>
       
@@ -188,7 +188,7 @@
     
     
     <entry>
-      <title>云计算SRE运维 — 第二周</title>
+      <title>云计算 SRE 运维 — 第二周</title>
       <link href="/tasks/task02/"/>
       <url>/tasks/task02/</url>
       
@@ -197,7 +197,7 @@
       
       <categories>
           
-          <category> 云计算SRE运维 - 作业集 </category>
+          <category> 云计算 SRE 运维 - 作业集 </category>
           
       </categories>
       
@@ -219,7 +219,7 @@
     
     
     <entry>
-      <title>OpenVPN管理</title>
+      <title>OpenVPN 管理</title>
       <link href="/openvpn/openvpn04/"/>
       <url>/openvpn/openvpn04/</url>
       
@@ -244,7 +244,7 @@
     
     
     <entry>
-      <title>OpenVPN实现</title>
+      <title>OpenVPN 实现</title>
       <link href="/openvpn/openvpn03/"/>
       <url>/openvpn/openvpn03/</url>
       
@@ -269,7 +269,7 @@
     
     
     <entry>
-      <title>云计算SRE运维 — 第一周</title>
+      <title>云计算 SRE 运维 — 第一周</title>
       <link href="/tasks/task01/"/>
       <url>/tasks/task01/</url>
       
@@ -278,7 +278,7 @@
       
       <categories>
           
-          <category> 云计算SRE运维 - 作业集 </category>
+          <category> 云计算 SRE 运维 - 作业集 </category>
           
       </categories>
       
@@ -300,7 +300,7 @@
     
     
     <entry>
-      <title>OpenVPN证书环境搭建</title>
+      <title>OpenVPN 证书环境搭建</title>
       <link href="/openvpn/openvpn02/"/>
       <url>/openvpn/openvpn02/</url>
       
@@ -325,7 +325,7 @@
     
     
     <entry>
-      <title>OpenVPN简介</title>
+      <title>OpenVPN 简介</title>
       <link href="/openvpn/openvpn01/"/>
       <url>/openvpn/openvpn01/</url>
       
