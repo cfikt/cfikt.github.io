@@ -7,5 +7,5 @@
 @font-face {
     font-family: 'Cousine-Regular-1';
     font-display: swap;
-    src: url('../font/Cousine-Regular-1.woff2') format("woff2");
+    src: url('https://cdn.jsdelivr.net/gh/cfikt/hexo@main/Cousine-Regular-1.woff2') format("woff2");
 }
