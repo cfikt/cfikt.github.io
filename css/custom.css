@@ -106,7 +106,7 @@ b, strong {
 /* 字体 */
 #article-container p {
     color: #000;
-    /* font-family: 'HarmonyOS Sans SC Medium'; */
+    font-family: 'HarmonyOS Sans SC Medium';
 }
 [data-theme="dark"]
 #article-container p {
@@ -135,6 +135,19 @@ b, strong {
     border-color: #d2d2d2;
 }
 
-body {
+/* 引用 */
+blockquote {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
+/* 无序列表 */
+#article-container.post-content ul > li {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
+/* 有序列表 */
+#article-container ol li, #article-container ul li {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
+/* 目录 */
+#aside-content #card-toc {
     font-family: 'HarmonyOS Sans SC Medium';
 }
