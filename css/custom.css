@@ -4,7 +4,7 @@
 }
 [data-theme="dark"]
 #recent-posts > .recent-post-item {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 5%);
 }
 
 /* 文章页面正文背景 */
@@ -14,7 +14,7 @@ div#post {
 }
 [data-theme="dark"]
 div#post {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 5%);
 }
 
 /* 分页页面 */
@@ -23,7 +23,7 @@ div#page {
 }
 [data-theme="dark"]
 div#page {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 5%);
 }
 
 /* 归档页面 */
@@ -32,7 +32,7 @@ div#archive {
 }
 [data-theme="dark"]
 div#archive {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 5%);
 }
 
 /* 标签页面 */
@@ -41,7 +41,7 @@ div#tag {
 }
 [data-theme="dark"]
 div#tag {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 5%);
 }
 
 /* 分类页面 */
@@ -50,7 +50,7 @@ div#category {
 }
 [data-theme="dark"]
 div#category {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 5%);
 }
 
 /* 页脚透明 */
@@ -111,3 +111,13 @@ b, strong {
 #article-container p {
     color: rgb(255 255 255 / 90%);
 }
+
+#recent-posts > .recent-post-item {
+    height: 10em;
+}
+
+/*文章页卡片宽幅占比*/
+.layout {
+    max-width: 1120px;
+}
+
