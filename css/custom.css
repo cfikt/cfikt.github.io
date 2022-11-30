@@ -159,3 +159,11 @@ blockquote {
 #recent-posts > .recent-post-item:not(:first-child) {
     font-family: 'HarmonyOS Sans SC Medium';
 }
+/* 分类页面 */
+div#page {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
+/* 块注释 */
+figure.highlight pre .comment {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
