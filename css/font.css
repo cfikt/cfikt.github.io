@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'HarmonyOS Sans SC Medium';
     font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/cfikt/hexo@main/HarmonyOS_Sans_SC_Medium.woff2') format("woff2");
+    src: url('../font/HarmonyOS_Sans_SC_Medium.woff2') format("woff2");
 }
 
 @font-face {
