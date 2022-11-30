@@ -103,9 +103,10 @@ b, strong {
     padding-left: 20px;
 }
 
-/* 字体颜色 */
+/* 字体 */
 #article-container p {
     color: #000;
+    font-family: 'HarmonyOS Sans SC Medium';
 }
 [data-theme="dark"]
 #article-container p {
@@ -132,4 +133,9 @@ b, strong {
     border-style: ridge;
     border-width: 8px;
     border-color: #d2d2d2;
+}
+
+
+#article-container pre, #article-container code {
+    font-family: Cousine-Regular-1, "HarmonyOS Sans SC Medium";
 }
