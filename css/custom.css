@@ -163,6 +163,13 @@ blockquote {
 div#page {
     font-family: 'HarmonyOS Sans SC Medium';
 }
+div#category {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
+/* 标签页面 */
+div#archive {
+    font-family: 'HarmonyOS Sans SC Medium';
+}
 /* 块注释 */
 figure.highlight pre .comment {
     font-family: 'HarmonyOS Sans SC Medium';
