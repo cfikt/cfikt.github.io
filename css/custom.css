@@ -111,13 +111,3 @@ b, strong {
 #article-container p {
     color: rgb(255 255 255 / 90%);
 }
-
-#recent-posts > .recent-post-item {
-    height: 10em;
-}
-
-/*文章页卡片宽幅占比*/
-.layout {
-    max-width: 1120px;
-}
-
