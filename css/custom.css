@@ -149,7 +149,8 @@ blockquote {
 }
 /* 目录 */
 #aside-content #card-toc {
-    font-family: "PingFang SC";
+    /* font-family: "PingFang SC"; */
+    font-family: 'KTXP-Booking-Serif';
 }
 /* 侧边栏 */
 #aside-content .card-widget {
