@@ -148,9 +148,9 @@ blockquote {
     font-family: 'HarmonyOS Sans SC Medium';
 }
 /* 目录 */
-/* #aside-content #card-toc {
+#aside-content #card-toc {
     font-family: "PingFang SC";
-} */
+}
 /* 侧边栏 */
 #aside-content .card-widget {
     font-family: 'HarmonyOS Sans SC Medium';
