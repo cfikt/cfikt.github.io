@@ -6331,10 +6331,12 @@ blockquote {
 /* 无序列表 */
 #article-container.post-content ul > li {
     font-family: "HarmonyOS Sans SC Medium";
+    line-height: 24px;
 }
 /* 有序列表 */
 #article-container ol li, #article-container ul li {
     font-family: "HarmonyOS Sans SC Medium";
+    line-height: 24px;
 }
 /* 目录 */
 #aside-content #card-toc {
