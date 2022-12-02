@@ -6290,7 +6290,7 @@ b, strong {
 /* 字体 */
 #article-container p {
     color: rgb(51, 51, 51);
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 [data-theme="dark"]
 #article-container p {
@@ -6330,11 +6330,11 @@ blockquote {
 }
 /* 无序列表 */
 #article-container.post-content ul > li {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 /* 有序列表 */
 #article-container ol li, #article-container ul li {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 /* 目录 */
 #aside-content #card-toc {
@@ -6342,26 +6342,26 @@ blockquote {
 }
 /* 侧边栏 */
 #aside-content .card-widget {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 /* 首页卡片 */
 #recent-posts > .recent-post-item {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 /* 分类页面 */
 div#page {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 div#category {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 /* 归档页面 */
 div#archive {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 /* 块注释 */
 figure.highlight pre .comment {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HarmonyOS Sans SC Medium";
 }
 
 
