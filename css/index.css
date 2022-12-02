@@ -6351,7 +6351,7 @@ blockquote {
 /* 首页卡片 */
 #recent-posts > .recent-post-item {
     font-family: "KTXP-Booking-Serif";
-    height: 15em;
+    /* height: 15em; */
 }
 /* 分类页面 */
 div#page {
