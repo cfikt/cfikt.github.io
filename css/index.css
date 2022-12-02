@@ -6369,6 +6369,11 @@ figure.highlight pre .comment {
 /* .layout { */
     /* max-width: 1280px; */
 /* } */
+
+/* 字体颜色 */
+body {
+    color: rgb(51, 51, 51);
+}
 @font-face {
     font-family: 'HarmonyOS Sans SC Medium';
     font-display: swap;
