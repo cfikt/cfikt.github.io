@@ -6358,6 +6358,12 @@ div#archive {
 figure.highlight pre .comment {
     font-family: "KTXP-Booking-Serif";
 }
+
+
+/* 图片阴影 */
+#article-container img {
+    box-shadow: 1px 1px 10px rgb(0 0 0 / 50%);
+}
 @font-face {
     font-family: 'HarmonyOS Sans SC Medium';
     font-display: swap;
