@@ -6332,11 +6332,13 @@ blockquote {
 #article-container.post-content ul > li {
     font-family: "HarmonyOS Sans SC Medium";
     line-height: 24px;
+    margin: 0 0 10px;
 }
 /* 有序列表 */
 #article-container ol li, #article-container ul li {
     font-family: "HarmonyOS Sans SC Medium";
     line-height: 24px;
+    margin: 0 0 10px;
 }
 /* 目录 */
 #aside-content #card-toc {
@@ -6364,6 +6366,13 @@ div#archive {
 /* 块注释 */
 figure.highlight pre .comment {
     font-family: "HarmonyOS Sans SC Medium";
+}
+#article-container code {
+    color: #24D;
+    background-color: #a1cdf32e;
+    margin: 0 4px;
+    padding: 3px 4px;
+    font-size: 16px;
 }
 
 
