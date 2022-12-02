@@ -6321,8 +6321,7 @@ b, strong {
 
 /* 引用 */
 blockquote {
-    font-family: "KTXP-Booking-Serif";
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #000;
     margin: 1.5em 0px;
     padding: 0.5em 10px;
