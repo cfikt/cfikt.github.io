@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>容器技术</title>
+      <link href="/docker/docker01/"/>
+      <url>/docker/docker01/</url>
+      
+        <content type="html"><![CDATA[<p>为什么要学习容器？</p><blockquote><p>容器技术是虚拟化、云计算、大数据之后的一门重要的技术，容器技术提高了硬件资源的利用率、方便了业务的互相扩容、实现了宕机自愈等功能；而 Docker 和 Kubernetes 是最典型的代表，在容器技术愈发流行的时代，熟练掌握好该技术的重要性是毋容置疑的</p></blockquote><p>​</p><p>容器是什么？</p><blockquote><p>一句话简单概括：“容器就是轻量级的虚拟机”</p><p>① 容器是一种轻量级、可移植、自包含的软件打包技术，利用容器使应用程序可以在任何地方以相同的方式运行</p><p>② 容器其实是一种沙盒技术，容器封装了所有运行应用程序所必需的相关环境，其特点是轻量级、可移植并且相互隔离</p></blockquote><p>​</p><p>Docker 是什么？</p><blockquote><p>① Docker 是一个开源的应用容器引擎，是一个应用打包、分发、部署的工具</p><p>② Docker 让开发者可以将应用以及依赖包打包到一个可移植的容器中，并移植或发布到任何流行的 Linux 机器上</p><p>③ Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 云计算 </tag>
+            
+            <tag> 容器云 </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Butterfly 主题使用文档</title>
       <link href="/blog/blog01/"/>
       <url>/blog/blog01/</url>
@@ -49,9 +78,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -80,9 +109,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -111,9 +140,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -142,9 +171,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -173,9 +202,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -204,9 +233,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -310,9 +339,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
