@@ -6364,6 +6364,11 @@ figure.highlight pre .comment {
 #article-container img {
     box-shadow: 1px 1px 10px rgb(0 0 0 / 50%);
 }
+
+/* 文章页宽度 */
+/* .layout { */
+    /* max-width: 1280px; */
+/* } */
 @font-face {
     font-family: 'HarmonyOS Sans SC Medium';
     font-display: swap;
