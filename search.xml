@@ -8,7 +8,7 @@
       <link href="/docker/docker01/"/>
       <url>/docker/docker01/</url>
       
-        <content type="html"><![CDATA[<h1 id="为什么要学习容器"><a href="#为什么要学习容器" class="headerlink" title="为什么要学习容器"></a>为什么要学习容器</h1><blockquote><p>容器技术是虚拟化、云计算、大数据之后的一门重要的技术，容器技术提高了硬件资源的利用率、方便了业务的互相扩容、实现了宕机自愈等功能；而 Docker 和 Kubernetes 是最典型的代表，在容器技术愈发流行的时代，熟练掌握好该技术的重要性是毋容置疑的</p></blockquote><p>​</p><p>​</p><h1 id="容器是什么"><a href="#容器是什么" class="headerlink" title="容器是什么"></a>容器是什么</h1><blockquote><p>一句话简单概括：“容器类似于轻量级的虚拟机”</p><p>① 容器是一种轻量级、可移植、自包含的软件打包技术，利用容器使应用程序可以在任何地方以相同的方式运行</p><p>② 容器其实是一种沙盒技术，容器封装了所有运行应用程序所必需的相关环境，其特点是轻量级、可移植并且相互隔离</p></blockquote><p>​</p><p>​</p><h1 id="Docker-是什么"><a href="#Docker-是什么" class="headerlink" title="Docker 是什么"></a>Docker 是什么</h1><blockquote><p>① Docker 是一个开源的应用容器引擎，是一个应用打包、分发、部署的工具</p><p>② Docker 让开发者可以将应用以及依赖包打包到一个可移植的容器中，并移植或发布到任何流行的 Linux 机器上</p><p>③ Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护</p></blockquote><p>​</p><p>​</p><h1 id="Docker-amp-虚拟机"><a href="#Docker-amp-虚拟机" class="headerlink" title="Docker &amp; 虚拟机"></a>Docker &amp; 虚拟机</h1><img src="https://cdn.staticaly.com/gh/cfikt/photo@master/image.4963khlxsgw0.png" alt="Docker & 虚拟机" style="zoom:80%;" /><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>Docker &amp; 虚拟机</p></div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>技术比较</p></div></div><div class='timeline-item-content'><ul><li>虚拟机：虚拟出一个主机硬件，并且运行一个完整的操作系统</li><li>容器：直接运行在宿主机的内核之上，不需要虚拟硬件，也没有自己的内核</li></ul></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>表现比较</p></div></div><div class='timeline-item-content'><ul><li>启动速度：Docker 启动快速，属于秒级别；虚拟机通常需要分钟级别时间启动</li><li>性能损耗：Dcoker 性能损耗更小，Docker 在操作系统之上进行虚拟化，与内核进行交互，性能优于通过 Hypervisor 层的虚拟化</li><li>占用空间：Docker 更轻量，Docker 架构可以共用一个内核与共享应用程序库，并且只需要运行所需要的环境依赖，而虚拟机运行一个完整的操作系统</li><li>系统利用率：同样的硬件环境，Docker 运行的容器数远多于虚拟机数量，对系统的利用率更高</li><li>隔离性：与虚拟机相比，Docker 隔离性较弱，Docker 属于进程之间的隔离，虚拟机可实现系统级别隔离</li><li>……</li></ul></div></div></div>]]></content>
+        <content type="html"><![CDATA[<h1 id="为什么要学习容器"><a href="#为什么要学习容器" class="headerlink" title="为什么要学习容器"></a>为什么要学习容器</h1><blockquote><p>容器技术是虚拟化、云计算、大数据之后的一门重要的技术，容器技术提高了硬件资源的利用率、方便了业务的互相扩容、实现了宕机自愈等功能；而 Docker 和 Kubernetes 是最典型的代表，在容器技术愈发流行的时代，熟练掌握好该技术的重要性是毋容置疑的</p></blockquote><p>​</p><p>​</p><h1 id="容器是什么"><a href="#容器是什么" class="headerlink" title="容器是什么"></a>容器是什么</h1><blockquote><p>一句话简单概括：“容器类似于轻量级的虚拟机”</p><p>① 容器是一种轻量级、可移植、自包含的软件打包技术，利用容器使应用程序可以在任何地方以相同的方式运行</p><p>② 容器其实是一种沙盒技术，容器封装了所有运行应用程序所必需的相关环境，其特点是轻量级、可移植并且相互隔离</p></blockquote><p>​</p><p>​</p><h1 id="Docker-是什么"><a href="#Docker-是什么" class="headerlink" title="Docker 是什么"></a>Docker 是什么</h1><blockquote><p>① Docker 是一个开源的应用容器引擎，是一个应用打包、分发、部署的工具</p><p>② Docker 让开发者可以将应用以及依赖包打包到一个可移植的容器中，并移植或发布到任何流行的 Linux 机器上</p><p>③ Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护</p></blockquote><p>​</p><p>​</p><h1 id="Docker-amp-虚拟机"><a href="#Docker-amp-虚拟机" class="headerlink" title="Docker &amp; 虚拟机"></a>Docker &amp; 虚拟机</h1><img src="https://cdn.staticaly.com/gh/cfikt/photo@master/image.4963khlxsgw0.png" alt="Docker & 虚拟机" style="zoom:80%;" /><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>Docker &amp; 虚拟机</p></div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>技术比较</p></div></div><div class='timeline-item-content'><ul><li>虚拟机：虚拟出一个主机硬件，并且运行一个完整的操作系统</li><li>Docker：直接运行在宿主机的内核之上，不需要虚拟硬件，也没有自己的内核</li></ul></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>表现比较</p></div></div><div class='timeline-item-content'><ul><li>启动速度：Docker 启动快速，属于秒级别；虚拟机通常需要分钟级别时间启动</li><li>性能损耗：Dcoker 性能损耗更小，Docker 在操作系统之上进行虚拟化，与内核进行交互，性能优于通过 Hypervisor 层的虚拟化</li><li>占用空间：Docker 更轻量，Docker 架构可以共用一个内核与共享应用程序库，并且只需要运行所需要的环境依赖，而虚拟机运行一个完整的操作系统</li><li>系统利用率：同样的硬件环境，Docker 运行的容器数远多于虚拟机数量，对系统的利用率更高</li><li>隔离性：与虚拟机相比，Docker 隔离性较弱，Docker 属于进程之间的隔离，虚拟机可实现系统级别隔离</li><li>……</li></ul></div></div></div>]]></content>
       
       
       <categories>
@@ -78,9 +78,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -109,9 +109,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -140,9 +140,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -171,9 +171,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -202,9 +202,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -233,9 +233,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -339,9 +339,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
