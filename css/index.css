@@ -6342,6 +6342,11 @@ html.hide-aside .layout > div:first-child {
     width: 95%;
 }
 
+/* 链接 */
+#article-container a {
+    font-family: "KTXP-Booking-Serif";
+}
+
 
 /* -------------------------------------- 美化相关 -------------------------------------- */
 /* 版权卡片美化 */
