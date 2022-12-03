@@ -6323,10 +6323,10 @@ b, strong {
 blockquote {
     /* font-weight: bold; */
     color: #000;
-    margin: 1.5em 0px;
-    padding: 0.5em 10px;
-    background-color: #fef3f3;
-    border-left: 3px solid #fef3f3;
+    /* margin: 0.5em 0px; */
+    padding: 0.5em 5px;
+    background-color: #f6e6e6;
+    border-left: 3px solid #f6e6e6;
 }
 /* 无序列表 */
 #article-container.post-content ul > li {
