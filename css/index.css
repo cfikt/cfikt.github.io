@@ -6360,7 +6360,7 @@ html.hide-aside .layout > div:first-child {
 #post .post-copyright:before {
     position: absolute;
     top: -1.9rem;                   /*C位置*/
-    color: #49b1f540;               /*C颜色*/
+    color: rgba(73, 177, 245, 0.25);               /*C颜色*/
     font-size: 6rem;                /*C大小*/
 }
 
