@@ -6394,19 +6394,19 @@ html.hide-aside .layout > div:first-child {
 @font-face {
     font-family: 'HarmonyOS Sans SC Medium';
     font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/cfikt/blogfiles@master/font/HarmonyOS_Sans_SC_Medium.woff2') format("woff2");
+    src: url('../../font/HarmonyOS_Sans_SC_Medium.woff2') format("woff2");
 }
 
 @font-face {
     font-family: 'KTXP-Booking-Serif';
     font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/cfikt/blogfiles@master/font/KTXP-Booking-Serif.woff2') format("woff2");
+    src: url('../../font/KTXP-Booking-Serif.woff2') format("woff2");
 }
 
 @font-face {
     font-family: 'Cousine-Regular-1';
     font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/cfikt/blogfiles@master/font/Cousine-Regular-1.woff2') format("woff2");
+    src: url('../../font/Cousine-Regular-1.woff2') format("woff2");
 }
 @media screen and (min-width: 768px) {
     #recent-posts > .post-card-large {
