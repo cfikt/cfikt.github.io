@@ -6410,12 +6410,11 @@ figure.highlight pre .comment {
 }
 
 /* 文章页宽度 */
-/* .layout { */
-    /* max-width: 1280px; */
-/* } */
+.layout > div:first-child {
+    width: 80%;
+}
 
 /* 阅读模式 */
-@media screen and (min-width: 900px)
 html.hide-aside .layout > div:first-child {
     width: 95%;
 }
@@ -6430,6 +6429,11 @@ html.hide-aside .layout > div:first-child {
 #pagination .page-number.current {
     background: #ffffff;
     color: #000;
+}
+
+/* Tabs 颜色 */
+#article-container .tabs > .tab-contents .tab-item-content.active {
+    background-color: #f0f0f0;
 }
 
 
@@ -6476,6 +6480,9 @@ html.hide-aside .layout > div:first-child {
     background: rgba(158, 204, 171, 0.2)!important;
 }
 
+.note:not(.no-icon) {
+    padding-left: 1em;
+}
 @font-face {
     font-family: 'HarmonyOS Sans SC Medium';
     font-display: swap;
