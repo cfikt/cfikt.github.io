@@ -66,7 +66,7 @@
       <link href="/docker/docker/"/>
       <url>/docker/docker/</url>
       
-        <content type="html"><![CDATA[<p>在学习 Docker 之前，首先需要认识容器技术，方便理解学习 Docker 时其中的实现原理或者过程；在理解了相对头疼的一些概念知识后，更轻松的面对 Docker 容器技术的学习：</p><ul><li><a href="/docker/docker01/" title="认识容器">认识容器</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<p>在学习 Docker 之前，首先需要认识容器技术，方便理解学习 Docker 时其中的实现原理或者过程；在理解了相对头疼的一些概念知识后，更轻松的面对 Docker 容器技术的学习：</p><ul><li><a href="/docker/docker01/" title="认识容器">认识容器</a></li><li><a href="/docker/docker02/" title="认识 Docker">认识 Docker</a></li></ul>]]></content>
       
       
       <categories>
@@ -136,9 +136,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -167,9 +167,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -198,9 +198,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -229,9 +229,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -260,9 +260,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -291,9 +291,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
@@ -397,9 +397,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 云计算 </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 运维 </tag>
             
