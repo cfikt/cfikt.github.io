@@ -6236,8 +6236,8 @@ b, strong {
 blockquote {
     color: #000;
     padding: 0.5em 5px;
-    background-color: #f6e6e6;
-    border-left: 3px solid #f6e6e6;
+    background-color: rgb(230 245 255);
+    border-left: 3px solid rgb(230 245 255);
 }
 
 /* 无序列表 */
