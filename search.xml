@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>认识 Docker</title>
+      <link href="/docker/docker02/"/>
+      <url>/docker/docker02/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Docker-优缺点"><a href="#Docker-优缺点" class="headerlink" title="Docker 优缺点"></a>Docker 优缺点</h1><h2 id="Docker-优点"><a href="#Docker-优点" class="headerlink" title="Docker 优点"></a>Docker 优点</h2><ul><li>快速部署：短时间内可以快速部署多个容器，实现快速交付</li><li>高效虚拟化：基于 Linux 内核实现应用虚拟化，不需要 Hypervisor 的额外支持，相比虚拟机大幅提升性能和效率</li><li>节省开支：提高服务器利用率，降低 IT 支出</li><li>简化配置：将运行环境打包保存至容器，直接启动即可使用</li><li>环境统一：将开发、测试、生产等应用的运行环境进行标准化和统一，减少环境不一样带来的各种问题</li><li>快速迁移和扩展：可实现跨平台运行在物理机、虚拟机、公有云等环境，良好的兼容性实现在任意环境运行容器</li><li>更好的实现面向服务的架构：通常一个容器只运行一个服务，实现分布的应用模型，可以方便的进行横向扩展，减少不同服务之间的相互影响</li></ul><blockquote><ul><li>灵活：即使是最复杂的应用也可以集装箱化</li><li>轻量级：容器利用并共享主机内核</li><li>可互换：可以即时部署更新和升级</li><li>便携式：可以在本地构建，部署到云，并在任何地方运行</li><li>可扩展：可以增加并白动分发容器副本</li><li>可堆叠：可以垂直和即时堆叠服务</li></ul></blockquote><p>​</p><h2 id="Docker-缺点"><a href="#Docker-缺点" class="headerlink" title="Docker 缺点"></a>Docker 缺点</h2><ul><li>隔离性：多个容器共用宿主机的内核，各应用之间的隔离不如虚拟机彻底</li><li>安全性：Docker 中普通用户具备对容器进行操作的权限</li><li>调试难度：如果容器内进程需要查看和调试，在每个容器内都需要安装相应的工具，造成存储空间的重复浪费</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 云计算 </tag>
+            
+            <tag> 容器云 </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>认识容器</title>
       <link href="/docker/docker01/"/>
       <url>/docker/docker01/</url>
@@ -107,9 +136,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -138,9 +167,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -169,9 +198,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -200,9 +229,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -231,9 +260,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -262,9 +291,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -368,9 +397,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             

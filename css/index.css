@@ -6163,6 +6163,13 @@ div#category {
     color: rgb(255 255 255 / 70%);
 }
 
+/* 分页按钮颜色 */
+[data-theme="dark"]
+#pagination .page-number.current {
+    background: rgb(0 0 0 / 40%);
+    color: rgb(255 255 255 / 90%);
+}
+
 
 /* -------------------------------------- 不知道什么鬼 -------------------------------------- */
 [data-theme="dark"]
@@ -6416,6 +6423,13 @@ html.hide-aside .layout > div:first-child {
 /* 链接 */
 #article-container a {
     font-family: "HarmonyOS Sans SC Medium";
+}
+
+/* 分页按钮 */
+[data-theme="light"]
+#pagination .page-number.current {
+    background: #ffffff;
+    color: #000;
 }
 
 
