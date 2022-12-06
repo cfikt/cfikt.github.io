@@ -66,7 +66,7 @@
       <link href="/docker/docker01/"/>
       <url>/docker/docker01/</url>
       
-        <content type="html"><![CDATA[<h1 id="为什么要学习容器"><a href="#为什么要学习容器" class="headerlink" title="为什么要学习容器"></a>为什么要学习容器</h1><blockquote><p>容器技术是虚拟化、云计算、大数据之后的一门重要的技术，容器技术提高了硬件资源的利用率、方便了业务的互相扩容、实现了宕机自愈等功能；而 Docker 和 Kubernetes 是最典型的代表，在容器技术愈发流行的时代，熟练掌握好该技术的重要性是毋容置疑的</p></blockquote><p>​</p><p>​</p><h1 id="容器是什么"><a href="#容器是什么" class="headerlink" title="容器是什么"></a>容器是什么</h1><blockquote><p>一句话简单概括：“容器类似于轻量级的虚拟机”</p><p>① 容器是一种轻量级、可移植、自包含的软件打包技术，利用容器使应用程序可以在任何地方以相同的方式运行</p><p>② 容器其实是一种沙盒技术，容器封装了所有运行应用程序所必需的相关环境，其特点是轻量级、可移植并且相互隔离</p></blockquote><p>​</p><p>​</p><h1 id="Docker-是什么"><a href="#Docker-是什么" class="headerlink" title="Docker 是什么"></a>Docker 是什么</h1><blockquote><p>① Docker 是一个开源的应用容器引擎，是一个应用打包、分发、部署的工具</p><p>② Docker 让开发者可以将应用以及依赖包打包到一个可移植的容器中，并移植或发布到任何流行的 Linux 机器上</p><p>③ Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护</p></blockquote><p>​</p><p>​</p><h1 id="Docker-amp-虚拟机"><a href="#Docker-amp-虚拟机" class="headerlink" title="Docker &amp; 虚拟机"></a>Docker &amp; 虚拟机</h1><img src="https://cdn.staticaly.com/gh/cfikt/photo@master/image.4963khlxsgw0.png" alt="Docker & 虚拟机" style="zoom:80%;" /><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>Docker &amp; 虚拟机</p></div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>技术比较</p></div></div><div class='timeline-item-content'><ul><li>虚拟机：虚拟出一个主机硬件，并且运行一个完整的操作系统</li><li>Docker：直接运行在宿主机系统上，与其它容器共享内核，不需要虚拟硬件</li></ul></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>表现比较</p></div></div><div class='timeline-item-content'><ul><li>启动速度：Docker 启动快速，属于秒级别；虚拟机通常需要分钟时间启动</li><li>性能损耗：Dcoker 性能损耗更小，Docker 在操作系统之上进行虚拟化，与内核进行交互，性能优于通过 Hypervisor 层的虚拟化</li><li>占用空间：Docker 更轻量，Docker 架构可以共用一个内核与共享应用程序库，并且只运行所需要的环境依赖，而虚拟机运行一个完整的操作系统</li><li>系统利用率：同样的硬件条件，Docker 运行的容器数比虚拟机数量更多，对系统的利用率更高</li><li>隔离性：Docker 属于进程之间的隔离，虚拟机可实现系统级别隔离，与虚拟机相比，Docker 隔离性较弱</li><li>……</li></ul></div></div></div><p>​</p><p>​</p><h1 id="容器限制与隔离"><a href="#容器限制与隔离" class="headerlink" title="容器限制与隔离"></a>容器限制与隔离</h1><p>对于容器技术而言，若想实现资源层面上的限制与隔离，需要依赖于 Linux 内核中所提供的 Namespace 与 cgroup 技术：</p><blockquote><p>Namespace：提供资源隔离功能</p><p>cgroup：提供资源限制、分配功能</p></blockquote><p>​</p><h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><p>容器之间相互隔离，互不影响，依赖于 Linux 内核中 Namespace 功能实现的：</p><p>Namespace 称为命名空间，是 Linux 内核中提供资源隔离的一种技术，使容器之间实现相互隔离、互不影响的效果，实现容器中的进程都可以在单独的命名空间中运行，并且只可以访问当前容器命名空间的资源</p><p>​</p><p>Docker 中各个容器运行在同一个 Docker 主进程，并且共享宿主机内核，为避免容器受到其它进程的干扰与影响，则需要使用 Namespace 技术实现相互隔离，以实现轻量级虚拟化技术服务，Linux 中提供了以下六种 Namespace 隔离的系统调用：</p><table><thead><tr><th>Namespace</th><th>系统调用参数</th><th>隔离内容</th></tr></thead><tbody><tr><td>UTS</td><td>CLONE_NEWUTS</td><td>提供内核，主机名或域名隔离能力</td></tr><tr><td>IPC</td><td>CLOUE_NEWIPC</td><td>提供进程间通信的隔离能力；包括信号量、消息队列和共享内存</td></tr><tr><td>PID</td><td>CLONE_NEWPID</td><td>提供进程隔离能力</td></tr><tr><td>Network</td><td>CLONE_NEWNET</td><td>提供网络隔离能力；包括网络设备、网络栈和端口等</td></tr><tr><td>Mount</td><td>CLONE_NEWNS</td><td>提供磁盘挂载点和文件系统的隔离能力</td></tr><tr><td>User</td><td>CLONE_NEWUSER</td><td>提供用户隔离能力；包括用户和组</td></tr></tbody></table><p>​</p><h2 id="cgroup"><a href="#cgroup" class="headerlink" title="cgroup"></a>cgroup</h2><p>cgroup 可以限制容器能够使用的资源上限：</p><p>​</p><p>在一个容器中，如果不对其做任何资源限制，则宿主机会允许该容器占用无限的资源，而无限制的占用宿主机的资源；为避免该情况的出现，则有必要对容器进行资源分配的限制：</p><blockquote><p><strong>注意：cgroup 功能在内核层默认开启</strong></p><p>cgroup（Linux Control Groups） 是 Linux 内核中的一个技术，提供了对一组进程及将来子进程的资源限制的能力。资源包括：CPU、内存、存储、网络等；通过 cgroup 可以限制某个进程的资源占用，并监控进程的统计信息；cgroups 通常用来限制容器的 CPU 和内存等资源的使用</p></blockquote><p>​</p><h2 id="扩展-chroot"><a href="#扩展-chroot" class="headerlink" title="扩展 - chroot"></a>扩展 - chroot</h2><p>chroot 是 UNIX 操作系统上的系统调用，用于将一个进程及其子进程的根目录改变到文件系统中的一个新位置，让这些进程只能访问到该目录，为每个进程提供独立的磁盘空间；与容器的实现很相似</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="为什么要学习容器"><a href="#为什么要学习容器" class="headerlink" title="为什么要学习容器"></a>为什么要学习容器</h1><blockquote><p>容器技术是虚拟化、云计算、大数据之后的一门重要的技术，容器技术提高了硬件资源的利用率、方便了业务的互相扩容、实现了宕机自愈等功能；而 Docker 和 Kubernetes 是最典型的代表，在容器技术愈发流行的时代，熟练掌握好该技术的重要性是毋容置疑的</p></blockquote><p>​</p><p>​</p><h1 id="容器是什么"><a href="#容器是什么" class="headerlink" title="容器是什么"></a>容器是什么</h1><blockquote><p>一句话简单概括：“容器类似于轻量级的虚拟机”</p><p>① 容器是一种轻量级、可移植、自包含的软件打包技术，利用容器使应用程序可以在任何地方以相同的方式运行</p><p>② 容器其实是一种沙盒技术，容器封装了所有运行应用程序所必需的相关环境，其特点是轻量级、可移植并且相互隔离</p></blockquote><p>​</p><p>​</p><h1 id="Docker-是什么"><a href="#Docker-是什么" class="headerlink" title="Docker 是什么"></a>Docker 是什么</h1><blockquote><p>① Docker 是一个开源的应用容器引擎，是一个应用打包、分发、部署的工具</p><p>② Docker 让开发者可以将应用以及依赖包打包到一个可移植的容器中，并移植或发布到任何流行的 Linux 机器上</p><p>③ Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护</p></blockquote><p>​</p><p>​</p><h1 id="Docker-amp-虚拟机"><a href="#Docker-amp-虚拟机" class="headerlink" title="Docker &amp; 虚拟机"></a>Docker &amp; 虚拟机</h1><img src="https://cdn.staticaly.com/gh/cfikt/photo@master/image.4963khlxsgw0.png" alt="Docker & 虚拟机" style="zoom:80%;" /><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>Docker &amp; 虚拟机</p></div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>技术比较</p></div></div><div class='timeline-item-content'><ul><li>虚拟机：虚拟出一个主机硬件，并且运行一个完整的操作系统</li><li>Docker：直接运行在宿主机系统上，与其它容器共享内核，不需要虚拟硬件</li></ul></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>表现比较</p></div></div><div class='timeline-item-content'><ul><li>启动速度：Docker 启动快速，属于秒级别；虚拟机通常需要分钟时间启动</li><li>性能损耗：Dcoker 性能损耗更小，Docker 在操作系统之上进行虚拟化，与内核进行交互，性能优于通过 Hypervisor 层的虚拟化</li><li>占用空间：Docker 更轻量，Docker 架构可以共用一个内核与共享应用程序库，并且只运行所需要的环境依赖，而虚拟机运行一个完整的操作系统</li><li>系统利用率：同样的硬件条件，Docker 运行的容器数比虚拟机数量更多，对系统的利用率更高</li><li>隔离性：Docker 属于进程之间的隔离，虚拟机可实现系统级别隔离，与虚拟机相比，Docker 隔离性较弱</li><li>……</li></ul></div></div></div><p>​</p><p>​</p><h1 id="容器限制与隔离"><a href="#容器限制与隔离" class="headerlink" title="容器限制与隔离"></a>容器限制与隔离</h1><p>对于容器技术而言，若想实现资源层面上的限制与隔离，需要依赖于 Linux 内核中所提供的 Namespace 与 cgroup 技术：</p><blockquote><p>Namespace：提供资源隔离功能</p><p>cgroup：提供资源限制、分配功能</p></blockquote><p>​</p><h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><p>容器之间相互隔离，互不影响，依赖于 Linux 内核中 Namespace 功能实现：</p><p>Namespace 称为命名空间，是 Linux 内核中提供资源隔离的一种技术，使容器之间实现相互隔离、互不影响的效果，实现容器中的进程都可以在单独的命名空间中运行，并且只可以访问当前容器命名空间的资源</p><p>​</p><p>Docker 中各个容器运行在同一个 Docker 主进程，并且共享宿主机内核，为避免容器受到其它进程的干扰与影响，则需要使用 Namespace 技术实现相互隔离，以实现轻量级虚拟化技术服务，Linux 中提供了以下六种 Namespace 隔离的系统调用：</p><table><thead><tr><th>Namespace</th><th>系统调用参数</th><th>隔离内容</th></tr></thead><tbody><tr><td>UTS</td><td>CLONE_NEWUTS</td><td>提供内核，主机名或域名隔离能力</td></tr><tr><td>IPC</td><td>CLOUE_NEWIPC</td><td>提供进程间通信的隔离能力；包括信号量、消息队列和共享内存</td></tr><tr><td>PID</td><td>CLONE_NEWPID</td><td>提供进程隔离能力</td></tr><tr><td>Network</td><td>CLONE_NEWNET</td><td>提供网络隔离能力；包括网络设备、网络栈和端口等</td></tr><tr><td>Mount</td><td>CLONE_NEWNS</td><td>提供磁盘挂载点和文件系统的隔离能力</td></tr><tr><td>User</td><td>CLONE_NEWUSER</td><td>提供用户隔离能力；包括用户和组</td></tr></tbody></table><p>​</p><h2 id="cgroup"><a href="#cgroup" class="headerlink" title="cgroup"></a>cgroup</h2><p>cgroup 可以限制容器能够使用的资源上限：</p><p>​</p><p>在一个容器中，如果不对其做任何资源限制，则宿主机会允许该容器占用无限的资源，而无限制的占用宿主机的资源；为避免该情况的出现，则有必要对容器进行资源分配的限制：</p><blockquote><p><strong>注意：cgroup 功能在内核层默认开启</strong></p><p>cgroup（Linux Control Groups） 是 Linux 内核中的一个技术，提供了对一组进程及将来子进程的资源限制的能力。资源包括：CPU、内存、存储、网络等；通过 cgroup 可以限制某个进程的资源占用，并监控进程的统计信息；cgroups 通常用来限制容器的 CPU 和内存等资源的使用</p></blockquote><p>​</p><h2 id="扩展-chroot"><a href="#扩展-chroot" class="headerlink" title="扩展 - chroot"></a>扩展 - chroot</h2><p>chroot 是 UNIX 操作系统上的系统调用，用于将一个进程及其子进程的根目录改变到文件系统中的一个新位置，让这些进程只能访问到该目录，为每个进程提供独立的磁盘空间；与容器的实现很相似</p>]]></content>
       
       
       <categories>
@@ -165,9 +165,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -196,9 +196,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -227,9 +227,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -258,9 +258,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -289,9 +289,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -320,9 +320,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
@@ -426,9 +426,9 @@
       
         <tags>
             
-            <tag> 云计算 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 云计算 </tag>
             
             <tag> 运维 </tag>
             
