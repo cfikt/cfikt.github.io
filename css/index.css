@@ -6378,6 +6378,11 @@ div#archive {
     /* font-family: "KTXP-Booking-Serif"; */
 /* } */
 
+/* 代码块 */
+#article-container pre, #article-container code {
+    font-family: Cousine-Regular-1, "KTXP-Booking-Serif";
+}
+
 /* 行内代码 */
 [data-theme="light"]
 #article-container code {
