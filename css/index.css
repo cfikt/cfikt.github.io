@@ -6194,7 +6194,7 @@ div#category {
 [data-theme="light"]
 div#post {
     background: rgba(255, 255, 255);
-    font-size: 16px;
+    /* font-size: 16px; */
 }
 
 /* 分页页面 */
