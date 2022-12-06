@@ -6314,7 +6314,7 @@ b, strong {
 #article-container p {
     margin: 0 0 10px;                           /* 外边距 */
     line-height: 24px;                          /* 行距 */
-    font-family: "KTXP-Booking-Serif";          /* 字体 */
+    font-family: "HONORSansCN-Medium";          /* 字体 */
 }
 
 /* 引用块 */
@@ -6327,14 +6327,14 @@ blockquote {
 
 /* 无序列表 */
 #article-container.post-content ul > li {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
     line-height: 24px;
     margin: 0px 0px 10px -12px;
 }
 
 /* 有序列表 */
 #article-container ol li, #article-container ul li {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
     line-height: 24px;
     margin: 0px 0px 10px -12px;
 }
@@ -6351,37 +6351,32 @@ blockquote {
 
 /* 侧边栏 */
 #aside-content .card-widget {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
 }
 
 /* 首页卡片 */
 #recent-posts > .recent-post-item {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
     /* height: 15em; */
 }
 
 /* 分类页面 */
 div#page {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
 }
 div#category {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
 }
 
 /* 归档页面 */
 div#archive {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
 }
 
 /* 块注释 */
 /* figure.highlight pre .comment { */
-    /* font-family: "KTXP-Booking-Serif"; */
+    /* font-family: "HONORSansCN-Medium"; */
 /* } */
-
-/* 代码块 */
-#article-container pre, #article-container code {
-    font-family: Cousine-Regular-1, "KTXP-Booking-Serif";
-}
 
 /* 行内代码 */
 [data-theme="light"]
@@ -6433,7 +6428,7 @@ html.hide-aside .layout > div:first-child {
 
 /* 链接 */
 #article-container a {
-    font-family: "KTXP-Booking-Serif";
+    font-family: "HONORSansCN-Medium";
 }
 
 /* 分页按钮 */
@@ -6492,27 +6487,27 @@ html.hide-aside .layout > div:first-child {
     background: rgba(158, 204, 171, 0.2)!important;
 }
 
-.note:not(.no-icon) {
-    padding-left: 1em;
-}
+/* .note:not(.no-icon) { */
+    /* padding-left: 1em; */
+/* } */
 /* @font-face { */
     /* font-family: 'HarmonyOS Sans SC Medium'; */
     /* font-display: swap; */
     /* src: url('../../font/HarmonyOS_Sans_SC_Medium.woff2') format("woff2"); */
 /* } */
 
-@font-face {
-    font-family: 'KTXP-Booking-Serif';
-    font-display: swap;
-    src: url('../../font/KTXP-Booking-Serif.woff2') format("woff2");
-}
-
-
 /* @font-face { */
-    /* font-family: 'HONORSansCN-Regular'; */
+    /* font-family: 'KTXP-Booking-Serif'; */
     /* font-display: swap; */
-    /* src: url('../../font/HONORSansCN-Regular.woff2') format("woff2"); */
+    /* src: url('../../font/KTXP-Booking-Serif.woff2') format("woff2"); */
 /* } */
+
+
+@font-face {
+    font-family: 'HONORSansCN-Medium';
+    font-display: swap;
+    src: url('../../font/HONORSansCN-Medium.woff2') format("woff2");
+}
 
 
 @font-face {
