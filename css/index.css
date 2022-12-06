@@ -6374,9 +6374,9 @@ div#archive {
 }
 
 /* 块注释 */
-figure.highlight pre .comment {
-    font-family: "KTXP-Booking-Serif";
-}
+/* figure.highlight pre .comment { */
+    /* font-family: "KTXP-Booking-Serif"; */
+/* } */
 
 /* 行内代码 */
 [data-theme="light"]
