@@ -6383,8 +6383,8 @@ div#archive {
 #article-container code {
     color: #24D;
     background-color: #a1cdf32e;
-    margin: 0 4px;
-    padding: 3px 4px;
+    /* margin: 0 4px; */
+    /* padding: 3px 4px; */
     font-size: 14.5px;
 }
 
