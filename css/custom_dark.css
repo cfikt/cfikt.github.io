@@ -1,0 +1,133 @@
+/* -------------------------------------- 背景色 白色背景  -------------------------------------- */
+/* 
+头像栏
+侧边栏
+分类页面
+标签页面
+归档页面
+分页页面
+文章页面正文背景
+首页文章卡片颜色 
+*/
+
+[data-theme="dark"]
+#recent-posts > .recent-post-item {
+    background: rgb(0 0 0 / 40%);
+}
+[data-theme="dark"]
+div#post {
+    background: rgb(0 0 0 / 40%);
+}
+[data-theme="dark"]
+div#page {
+    background: rgb(0 0 0 / 40%);
+}
+[data-theme="dark"]
+div#archive {
+    background: rgb(0 0 0 / 40%);
+}
+[data-theme="dark"]
+div#tag {
+    background: rgb(0 0 0 / 40%);
+}
+[data-theme="dark"]
+div#category {
+    background: rgb(0 0 0 / 40%);
+}
+[data-theme="dark"]
+#aside-content .card-widget {
+    background: rgb(0 0 0 / 40%);
+}
+[data-theme="dark"]
+#aside-content > .card-widget:first-child {
+    background: rgb(0 0 0 / 40%);
+}
+
+
+/* -------------------------------------- 背景色 黑色背景  -------------------------------------- */
+/* 
+头像栏
+侧边栏
+分类页面
+标签页面
+归档页面
+分页页面
+文章页面正文背景
+首页文章卡片颜色 
+*/
+
+/* [data-theme="dark"] */
+/* #recent-posts > .recent-post-item { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+/* [data-theme="dark"] */
+/* div#post { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+/* [data-theme="dark"] */
+/* div#page { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+/* [data-theme="dark"] */
+/* div#archive { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+/* [data-theme="dark"] */
+/* div#tag { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+/* [data-theme="dark"] */
+/* div#category { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+/* [data-theme="dark"] */
+/* #aside-content .card-widget { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+/* [data-theme="dark"] */
+/* #aside-content > .card-widget:first-child { */
+    /* background: rgba(255, 255, 255, 0.2); */
+/* } */
+
+/* -------------------------------------- 字体 -------------------------------------- */
+/* 粗体 */
+[data-theme="dark"] b, strong {
+    color: #03a9f4;
+    font-weight: initial;
+}
+
+/* 行内代码 */
+[data-theme="dark"]
+#article-container code {
+    color: #ff9800;
+    background-color: #a1cdf32e;
+    margin: 0 4px;
+    padding: 3px 4px;
+    font-size: 14.5px;
+}
+
+/* 查看更多 字体颜色 */
+[data-theme="dark"]
+.magnet_link_more {
+    color: rgb(255 255 255 / 70%);
+}
+
+/* 分页按钮颜色 */
+[data-theme="dark"]
+#pagination .page-number.current {
+    background: rgb(0 0 0 / 40%);
+    color: rgb(255 255 255 / 90%);
+}
+
+
+/* -------------------------------------- 不知道什么鬼 -------------------------------------- */
+[data-theme="dark"]
+.read-mode #aside-content .card-widget {
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: #ffffff;
+}
+[data-theme="dark"]  
+.read-mode div#post {
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: #ffffff;
+}
