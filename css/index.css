@@ -6307,7 +6307,7 @@ b, strong {
 #article-container p {
     margin: 0 0 10px;                           /* 外边距 */
     line-height: 24px;                          /* 行距 */
-    font-family: "GEEK KTXP";          /* 字体 */
+    font-family: "GEEK KTXP";                   /* 字体 */
 }
 
 /* 引用块 */
@@ -6434,6 +6434,11 @@ html.hide-aside .layout > div:first-child {
 /* Tabs 颜色 */
 #article-container .tabs > .tab-contents .tab-item-content.active {
     background-color: #f0f0f0;
+}
+
+/* 列表缩进 */
+#article-container ol ol, #article-container ul ol, #article-container ol ul, #article-container ul ul {
+    padding-left: 30px;
 }
 
 
