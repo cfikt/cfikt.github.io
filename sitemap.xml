@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.geekcn.cn/tasks/task08/</loc>
+    
+    <lastmod>2022-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.geekcn.cn/tasks/task07/</loc>
+    
+    <lastmod>2022-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task/</loc>
     
     <lastmod>2022-12-15</lastmod>
     
@@ -21,15 +39,6 @@
   
   <url>
     <loc>https://www.geekcn.cn/project/lamp/</loc>
-    
-    <lastmod>2022-12-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task/</loc>
     
     <lastmod>2022-12-15</lastmod>
     
@@ -230,27 +239,6 @@
   </url>
   
   <url>
-    <loc>https://www.geekcn.cn/tags/OpenVPN/</loc>
-    <lastmod>2022-12-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/tags/Linux-%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2022-12-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/tags/Redis/</loc>
-    <lastmod>2022-12-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.geekcn.cn/tags/Linux/</loc>
     <lastmod>2022-12-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -266,6 +254,27 @@
   
   <url>
     <loc>https://www.geekcn.cn/tags/SRE/</loc>
+    <lastmod>2022-12-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tags/OpenVPN/</loc>
+    <lastmod>2022-12-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tags/Linux-%E8%BF%90%E7%BB%B4/</loc>
+    <lastmod>2022-12-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tags/Redis/</loc>
     <lastmod>2022-12-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -316,6 +325,13 @@
   </url>
   
   <url>
+    <loc>https://www.geekcn.cn/categories/%E4%BA%91%E8%AE%A1%E7%AE%97-SRE-%E8%BF%90%E7%BB%B4-%E4%BD%9C%E4%B8%9A%E9%9B%86/</loc>
+    <lastmod>2022-12-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.geekcn.cn/categories/OpenVPN/</loc>
     <lastmod>2022-12-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -324,13 +340,6 @@
   
   <url>
     <loc>https://www.geekcn.cn/categories/Redis-%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2022-12-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/categories/%E4%BA%91%E8%AE%A1%E7%AE%97-SRE-%E8%BF%90%E7%BB%B4-%E4%BD%9C%E4%B8%9A%E9%9B%86/</loc>
     <lastmod>2022-12-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

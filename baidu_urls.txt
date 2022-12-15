@@ -6,5 +6,5 @@ https://www.geekcn.cn/docker/docker01/
 https://www.geekcn.cn/docker/docker/
 https://www.geekcn.cn/blog/blog01/
 https://www.geekcn.cn/tasks/task/
+https://www.geekcn.cn/tasks/task08/
 https://www.geekcn.cn/tasks/task07/
-https://www.geekcn.cn/tasks/task06/
