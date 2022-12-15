@@ -2,14 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.geekcn.cn/tasks/task07/</loc>
-    <lastmod>2022-12-14</lastmod>
+    <lastmod>2022-12-15</lastmod>
   </url>
   <url>
-    <loc>https://www.geekcn.cn/docker/docker/</loc>
-    <lastmod>2022-12-09</lastmod>
+    <loc>https://www.geekcn.cn/redis/type/</loc>
+    <lastmod>2022-12-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/project/lamp/</loc>
+    <lastmod>2022-12-15</lastmod>
   </url>
   <url>
     <loc>https://www.geekcn.cn/tasks/task/</loc>
+    <lastmod>2022-12-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/docker/docker/</loc>
     <lastmod>2022-12-09</lastmod>
   </url>
   <url>

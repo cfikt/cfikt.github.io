@@ -1,3 +1,5 @@
+https://www.geekcn.cn/redis/type/
+https://www.geekcn.cn/project/lamp/
 https://www.geekcn.cn/docker/docker03/
 https://www.geekcn.cn/docker/docker02/
 https://www.geekcn.cn/docker/docker01/
@@ -6,5 +8,3 @@ https://www.geekcn.cn/blog/blog01/
 https://www.geekcn.cn/tasks/task/
 https://www.geekcn.cn/tasks/task07/
 https://www.geekcn.cn/tasks/task06/
-https://www.geekcn.cn/tasks/task05/
-https://www.geekcn.cn/tasks/task04/
