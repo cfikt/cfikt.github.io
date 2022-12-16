@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.geekcn.cn/docker/docker/</loc>
+    <lastmod>2022-12-16</lastmod>
+  </url>
+  <url>
     <loc>https://www.geekcn.cn/tasks/task08/</loc>
     <lastmod>2022-12-15</lastmod>
   </url>
@@ -19,10 +23,6 @@
   <url>
     <loc>https://www.geekcn.cn/project/lamp/</loc>
     <lastmod>2022-12-15</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/docker/docker/</loc>
-    <lastmod>2022-12-09</lastmod>
   </url>
   <url>
     <loc>https://www.geekcn.cn/docker/docker03/</loc>
