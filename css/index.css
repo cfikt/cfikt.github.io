@@ -6088,7 +6088,7 @@ div#category {
 }
 [data-theme="dark"]
 #aside-content .card-widget {
-    background: rgb(0 0 0 / 40%);
+    background: rgb(0 0 0 / 80%);
 }
 [data-theme="dark"]
 #aside-content > .card-widget:first-child {
