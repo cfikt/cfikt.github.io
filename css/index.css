@@ -6320,7 +6320,7 @@ b, strong {
 #article-container p {
     margin: 0 0 10px;                           /* 外边距 */
     line-height: 24px;                          /* 行距 */
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;                    /* 字体 */
+    font-family: "GEEK KTXP" !important;                    /* 字体 */
     
 }
 
@@ -6334,7 +6334,7 @@ blockquote {
 
 /* 无序列表 */
 #article-container.post-content ul > li {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
     line-height: 24px;
     margin: 0px 0px 10px -12px;
@@ -6342,7 +6342,7 @@ blockquote {
 
 /* 有序列表 */
 #article-container ol li, #article-container ul li {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
     line-height: 24px;
     margin: 0px 0px 10px -12px;
@@ -6360,36 +6360,36 @@ blockquote {
 
 /* 侧边栏 */
 #aside-content .card-widget {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
 }
 
 /* 首页卡片 */
 #recent-posts > .recent-post-item {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
     /* height: 15em; */
 }
 
 /* 分类页面 */
 div#page {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
 }
 div#category {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
 }
 
 /* 归档页面 */
 div#archive {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
 }
 
 /* 块注释 */
 /* figure.highlight pre .comment { */
-    /* font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif; */
+    /* font-family: "GEEK KTXP" !important; */
 /* } */
 
 /* 行内代码 */
@@ -6442,7 +6442,7 @@ html.hide-aside .layout > div:first-child {
 
 /* 链接 */
 #article-container a {
-    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
+    font-family: "GEEK KTXP" !important;
     
 }
 
