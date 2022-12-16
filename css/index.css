@@ -6194,38 +6194,38 @@ div#category {
 /* 首页文章卡片颜色 */
 [data-theme="light"]
 #recent-posts > .recent-post-item {
-    background: rgba(255, 255, 255);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* 文章页面正文背景 */
 [data-theme="light"]
 div#post {
-    background: rgba(255, 255, 255);
+    background: rgba(255, 255, 255, 0.4);
     /* font-size: 16px; */
 }
 
 /* 分页页面 */
 [data-theme="light"]
 div#page {
-    background: rgba(255, 255, 255);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* 归档页面 */
 [data-theme="light"]
 div#archive {
-    background: rgba(255, 255, 255);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* 标签页面 */
 [data-theme="light"]
 div#tag {
-    background: rgba(255, 255, 255);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* 分类页面 */
 [data-theme="light"]
 div#category {
-    background: rgba(255, 255, 255);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* -------------------------------------- 头部颜色 -------------------------------------- */
