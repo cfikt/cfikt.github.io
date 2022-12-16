@@ -6190,6 +6190,12 @@ div#category {
     color: #ffffff;
 }
 
+@font-face {
+    font-family: 'GEEK KTXP';
+    font-display: swap;
+    src: url('https://fastly.jsdelivr.net/gh/cfikt/blogfiles@master/font/KTXP-Booking-Serif.woff2') 
+}
+
 /* -------------------------------------- 背景色 -------------------------------------- */
 /* 首页文章卡片颜色 */
 [data-theme="light"]
@@ -6510,38 +6516,6 @@ html.hide-aside .layout > div:first-child {
 /* .note:not(.no-icon) { */
     /* padding-left: 1em; */
 /* } */
-/* @font-face { */
-    /* font-family: 'HarmonyOS Sans SC Medium'; */
-    /* font-display: swap; */
-    /* src: url('https://files-geekcn-1315448341.cos.ap-guangzhou.myqcloud.com/font/HarmonyOS_Sans_SC_Medium.woff2') */
-/* } */
-
-
-/* @font-face { */
-    /* font-family: 'KTXP Booking Serif'; */
-    /* font-display: swap; */
-    /* src: url('../../font/KTXP-Booking-Serif.woff2') */
-/* } */
-
-@font-face {
-    font-family: 'GEEK KTXP';
-    font-display: swap;
-    src: url('https://fastly.jsdelivr.net/gh/cfikt/blogfiles@master/font/KTXP-Booking-Serif.woff2') 
-}
-
-
-/* @font-face { */
-    /* font-family: 'GEEK HONOR'; */
-    /* font-display: swap; */
-    /* src: url('https://files-geekcn-1315448341.cos.ap-guangzhou.myqcloud.com/font/HONORSansCN-Medium.woff2') */
-/* } */
-
-
-@font-face {
-    font-family: 'GEEK Cousine';
-    font-display: swap;
-    src: url('../../font/Cousine-Regular-1.woff2')
-}
 @media screen and (min-width: 768px) {
     #recent-posts > .post-card-large {
         height: 12em!important;
