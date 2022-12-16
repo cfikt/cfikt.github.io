@@ -6320,8 +6320,8 @@ b, strong {
 #article-container p {
     margin: 0 0 10px;                           /* 外边距 */
     line-height: 24px;                          /* 行距 */
-    font-family: 'GEEK KTXP', 'PingFang SC';                    /* 字体 */
-    font-display: swap;
+    font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;                    /* 字体 */
+    
 }
 
 /* 引用块 */
@@ -6335,7 +6335,7 @@ blockquote {
 /* 无序列表 */
 #article-container.post-content ul > li {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
     line-height: 24px;
     margin: 0px 0px 10px -12px;
 }
@@ -6343,7 +6343,7 @@ blockquote {
 /* 有序列表 */
 #article-container ol li, #article-container ul li {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
     line-height: 24px;
     margin: 0px 0px 10px -12px;
 }
@@ -6361,30 +6361,30 @@ blockquote {
 /* 侧边栏 */
 #aside-content .card-widget {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
 }
 
 /* 首页卡片 */
 #recent-posts > .recent-post-item {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
     /* height: 15em; */
 }
 
 /* 分类页面 */
 div#page {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
 }
 div#category {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
 }
 
 /* 归档页面 */
 div#archive {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
 }
 
 /* 块注释 */
@@ -6443,7 +6443,7 @@ html.hide-aside .layout > div:first-child {
 /* 链接 */
 #article-container a {
     font-family: "GEEK KTXP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif;
-    font-display: swap;
+    
 }
 
 /* 分页按钮 */
@@ -6513,34 +6513,34 @@ html.hide-aside .layout > div:first-child {
 /* @font-face { */
     /* font-family: 'HarmonyOS Sans SC Medium'; */
     /* font-display: swap; */
-    /* src: url('https://files-geekcn-1315448341.cos.ap-guangzhou.myqcloud.com/font/HarmonyOS_Sans_SC_Medium.woff2') format("woff2"); */
+    /* src: url('https://files-geekcn-1315448341.cos.ap-guangzhou.myqcloud.com/font/HarmonyOS_Sans_SC_Medium.woff2') */
 /* } */
 
 
 /* @font-face { */
     /* font-family: 'KTXP Booking Serif'; */
     /* font-display: swap; */
-    /* src: url('../../font/KTXP-Booking-Serif.woff2') format("woff2"); */
+    /* src: url('../../font/KTXP-Booking-Serif.woff2') */
 /* } */
 
 @font-face {
     font-family: 'GEEK KTXP';
     font-display: swap;
-    src: url('https://fastly.jsdelivr.net/gh/cfikt/blogfiles@master/font/KTXP-Booking-Serif.woff2') format("woff2"); 
+    src: url('https://fastly.jsdelivr.net/gh/cfikt/blogfiles@master/font/KTXP-Booking-Serif.woff2') 
 }
 
 
 /* @font-face { */
     /* font-family: 'GEEK HONOR'; */
     /* font-display: swap; */
-    /* src: url('https://files-geekcn-1315448341.cos.ap-guangzhou.myqcloud.com/font/HONORSansCN-Medium.woff2') format("woff2"); */
+    /* src: url('https://files-geekcn-1315448341.cos.ap-guangzhou.myqcloud.com/font/HONORSansCN-Medium.woff2') */
 /* } */
 
 
 @font-face {
     font-family: 'GEEK Cousine';
     font-display: swap;
-    src: url('../../font/Cousine-Regular-1.woff2') format("woff2");
+    src: url('../../font/Cousine-Regular-1.woff2')
 }
 @media screen and (min-width: 768px) {
     #recent-posts > .post-card-large {
