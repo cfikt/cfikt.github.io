@@ -6516,7 +6516,7 @@ html.hide-aside .layout > div:first-child {
 
 @font-face {
     font-family: 'GEEK KTXP';
-    font-display: fallback;
+    font-display: swap;
     src: url('https://fastly.jsdelivr.net/gh/cfikt/blogfiles@master/font/KTXP-Booking-Serif.woff2') format("woff2"); 
 }
 
