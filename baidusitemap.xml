@@ -2,7 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.geekcn.cn/tasks/task08/</loc>
-    <lastmod>2022-12-16</lastmod>
+    <lastmod>2022-12-18</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/lvs/tunnel/</loc>
+    <lastmod>2022-12-18</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/lvs/nat/</loc>
+    <lastmod>2022-12-18</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/lvs/dr/</loc>
+    <lastmod>2022-12-18</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/lvs/lvs01/</loc>
+    <lastmod>2022-12-18</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/test/test01/</loc>
+    <lastmod>2022-12-18</lastmod>
   </url>
   <url>
     <loc>https://www.geekcn.cn/project/lamp/</loc>
