@@ -166,19 +166,6 @@
     
     
     <entry>
-      <title>作业草稿</title>
-      <link href="/test/test01/"/>
-      <url>/test/test01/</url>
-      
-        <content type="html"><![CDATA[<ol><li>Web HTTP 协议通信过程，相关技术术语总结</li></ol>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Redis 数据类型</title>
       <link href="/redis/type/"/>
       <url>/redis/type/</url>
