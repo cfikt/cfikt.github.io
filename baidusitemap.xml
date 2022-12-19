@@ -1,107 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.geekcn.cn/tasks/task08/</loc>
-    <lastmod>2022-12-19</lastmod>
-  </url>
-  <url>
     <loc>https://www.geekcn.cn/tasks/task/</loc>
     <lastmod>2022-12-19</lastmod>
   </url>
   <url>
     <loc>https://www.geekcn.cn/docker/docker/</loc>
     <lastmod>2022-12-19</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/project/lamp/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/openvpn/openvpn01/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/openvpn/openvpn02/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/openvpn/openvpn03/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/redis/type/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/openvpn/openvpn04/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/nginx/nginx02/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/nginx/nginx01/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/blog/blog01/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/docker/docker01/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/docker/docker02/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/docker/docker03/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/lvs/dr/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/lvs/nat/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/lvs/tunnel/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/lvs/lvs01/</loc>
-    <lastmod>2022-12-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task07/</loc>
-    <lastmod>2022-12-15</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task06/</loc>
-    <lastmod>2022-12-06</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task01/</loc>
-    <lastmod>2022-12-04</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task05/</loc>
-    <lastmod>2022-12-02</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task04/</loc>
-    <lastmod>2022-12-01</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task03/</loc>
-    <lastmod>2022-12-01</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task02/</loc>
-    <lastmod>2022-12-01</lastmod>
   </url>
 </urlset> 
