@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.geekcn.cn/docker/docker/</loc>
+    <loc>https://www.geekcn.cn/tasks/task/</loc>
     
     <lastmod>2022-12-19</lastmod>
     
@@ -11,9 +11,9 @@
   </url>
   
   <url>
-    <loc>https://www.geekcn.cn/tasks/task/</loc>
+    <loc>https://www.geekcn.cn/docker/docker/</loc>
     
-    <lastmod>2022-12-18</lastmod>
+    <lastmod>2022-12-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -272,20 +272,6 @@
 
   
   <url>
-    <loc>https://www.geekcn.cn/tags/LVS/</loc>
-    <lastmod>2022-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
-    <lastmod>2022-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.geekcn.cn/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
     <lastmod>2022-12-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -301,6 +287,20 @@
   
   <url>
     <loc>https://www.geekcn.cn/tags/Docker/</loc>
+    <lastmod>2022-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tags/LVS/</loc>
+    <lastmod>2022-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.geekcn.cn/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
     <lastmod>2022-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -400,14 +400,14 @@
 
   
   <url>
-    <loc>https://www.geekcn.cn/categories/LVS-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%9B%86%E7%BE%A4/</loc>
+    <loc>https://www.geekcn.cn/categories/Docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2022-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.geekcn.cn/categories/Docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://www.geekcn.cn/categories/LVS-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%9B%86%E7%BE%A4/</loc>
     <lastmod>2022-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
