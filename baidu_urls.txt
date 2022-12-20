@@ -1,3 +1,2 @@
-https://www.geekcn.cn/project/lamp/
 https://www.geekcn.cn/docker/docker/
 https://www.geekcn.cn/tasks/task/

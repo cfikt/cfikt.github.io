@@ -6187,7 +6187,7 @@ blockquote.pullquote.right {
   }
   
   .category-bar-item a{
-    padding: 0.2rem 0.8rem 0.35rem 0.8rem;
+    padding: 0.2rem 0.6rem 0.2rem 0.6rem;
     margin: 0 0.2rem;
     font-weight: bold;
     border-radius: 12px;
@@ -6481,6 +6481,20 @@ h1::before, h2::before, h3::before {
 
 
 /* -------------------------------------- 属性样式 -------------------------------------- */
+:root {
+    --font-family: 'HarmonyOS_Medium', PingFang SC, Microsoft YaHei, sans-serif;
+}
+
+/* 导航栏居中 */
+#nav .menus_items {
+    /* display: inline; 这个带不带都可以，本来就是 inline */
+    position: absolute;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+}
+
 /* 正文字体大小 */
 div#post {
     font-size: 14.88px;
@@ -6503,7 +6517,7 @@ b, strong {
 #article-container p {
     margin: 0 0 10px;                           /* 外边距 */
     line-height: 24px;                          /* 行距 */
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;                    /* 字体 */
+    font-family: var(--font-family);                   /* 字体 */
     
 }
 
@@ -6529,7 +6543,7 @@ blockquote::before {
 
 /* 无序列表 */
 #article-container.post-content ul > li {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     line-height: 24px;
     margin: 10px 0px 10px -22px;
 }
@@ -6539,7 +6553,7 @@ blockquote::before {
 
 /* 有序列表 */
 #article-container ol li, #article-container ul li {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     line-height: 24px;
     margin: 0px 0px 10px -12px;
 }
@@ -6556,36 +6570,36 @@ blockquote::before {
 
 /* 侧边栏 */
 #aside-content .card-widget {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     
 }
 
 /* 首页卡片 */
 #recent-posts > .recent-post-item {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     
     /* height: 15em; */
 }
 
 /* 分类页面 */
 div#page {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     
 }
 div#category {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     
 }
 
 /* 归档页面 */
 div#archive {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     
 }
 
 /* 块注释 */
 /* figure.highlight pre .comment { */
-    /* font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important; */
+    /* font-family: var(--font-family); */
 /* } */
 
 /* 行内代码 */
@@ -6638,7 +6652,7 @@ html.hide-aside .layout > div:first-child {
 
 /* 链接 */
 #article-container a {
-    font-family: 'HarmonyOS_Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "STZhongsong", "Lantinghei SC", sans-serif !important;
+    font-family: var(--font-family);
     
 }
 
