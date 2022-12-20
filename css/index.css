@@ -6535,10 +6535,10 @@ blockquote {
 blockquote::before {
     color: rgb(67, 65, 65);
     content: "📑";
-    font-size: 6px;
-    /* line-height: 1.75em; */
-    /* margin-right: 0.25em; */
-    /* vertical-align: 0.5em; */
+    font-size: 18px;
+    line-height: 0.4em;
+    margin-right: 0.25em;
+    vertical-align: -0.5em;
 }
 
 /* 无序列表 */
