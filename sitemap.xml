@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.geekcn.cn/tasks/task/</loc>
+    
+    <lastmod>2022-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.geekcn.cn/docker/docker/</loc>
     
     <lastmod>2022-12-20</lastmod>
@@ -14,15 +23,6 @@
     <loc>https://www.geekcn.cn/about/</loc>
     
     <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.geekcn.cn/tasks/task/</loc>
-    
-    <lastmod>2022-12-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +49,7 @@
 
   <url>
     <loc>https://www.geekcn.cn/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,42 +57,42 @@
   
   <url>
     <loc>https://www.geekcn.cn/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.geekcn.cn/tags/%E5%AE%B9%E5%99%A8%E4%BA%91/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.geekcn.cn/tags/Docker/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.geekcn.cn/tags/Linux/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.geekcn.cn/tags/%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.geekcn.cn/tags/SRE/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -101,14 +101,14 @@
   
   <url>
     <loc>https://www.geekcn.cn/categories/Docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.geekcn.cn/categories/%E4%BA%91%E8%AE%A1%E7%AE%97-SRE-%E8%BF%90%E7%BB%B4-%E4%BD%9C%E4%B8%9A%E9%9B%86/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
