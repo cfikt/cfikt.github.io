@@ -6603,7 +6603,7 @@ blockquote::before {
 #article-container ol li, #article-container ul li {
     font-family: var(--font-family);
     line-height: 24px;
-    margin: 0px 0px 10px -12px;
+    margin: 10px 0px 10px -22px;
 }
 
 /* 目录 */
@@ -6701,6 +6701,12 @@ html.hide-aside .layout > div:first-child {
 /* 链接 */
 #article-container a {
     font-family: var(--font-family);
+    text-decoration: none;
+    border-bottom: 2px solid #9e9e9e;
+    /* color: #363636; */
+    /* font-weight: bold; */
+    padding: 0 4px;
+    border-radius: 8px 8px 0 0;
     
 }
 
