@@ -6486,7 +6486,8 @@ h1::before, h2::before, h3::before {
 
 /* -------------------------------------- 属性样式 -------------------------------------- */
 :root {
-    --font-family: 'KTXP', PingFang SC, Microsoft YaHei, sans-serif;
+    --font-family: 'DFPKingGothicGB-medium', PingFang SC, Microsoft YaHei, sans-serif;
+    /* --font-family: 'KTXP', PingFang SC, Microsoft YaHei, sans-serif; */
 }
 
 /* 导航栏 */
