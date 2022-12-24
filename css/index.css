@@ -6419,7 +6419,7 @@ div#category {
 [data-theme="light"]
 #post-info #post-meta a {
     color: #fff;
-    font-weight: 600;
+    /* font-weight: 600; */
 }
 [data-theme="light"]
 #post-info .post-title {
