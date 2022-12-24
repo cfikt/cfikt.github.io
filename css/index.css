@@ -6486,7 +6486,7 @@ h1::before, h2::before, h3::before {
 
 /* -------------------------------------- 属性样式 -------------------------------------- */
 :root {
-    --font-family: 'DFPKingGothicGB-medium', PingFang SC, Microsoft YaHei, sans-serif;
+    --font-family: 'KTXP', PingFang SC, Microsoft YaHei, sans-serif;
 }
 
 /* 导航栏 */
@@ -6808,6 +6808,11 @@ table tr td:first-child {
 table th {
     background-color: rgb(0 0 0 / 30%);
     color: #5c00ff;
+}
+
+/* 滚动条 */
+html {
+    overflow-y: overlay;
 }
 @font-face {
     font-family: 'DFPKingGothicGB-medium';
@@ -7299,6 +7304,12 @@ table th {
     query region: null
     final region: cn
 */
+@font-face {
+    font-family: 'KTXP';
+    src: url(../../font/KTXP.woff2) format('woff2');
+    font-display: swap;
+}
+
 @font-face {
   font-family: 'HarmonyOS_Medium';
   font-style: normal;
