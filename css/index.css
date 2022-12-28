@@ -6793,7 +6793,7 @@ html.hide-aside .layout > div:first-child {
 /* 表格边框 */
 table th,
 table td {
-  border: 1px solid #141b1b;
+  border: 1.2px solid #141b1b;
 }
 table tr td:first-child {
     background-color: #ffe0e07d;
