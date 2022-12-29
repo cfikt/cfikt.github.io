@@ -7322,7 +7322,7 @@ table th {
 
 @font-face {
     font-family: 'Cousine';
-    src: url(../../font/Cousine-Bold-4.woff2) format('woff2');
+    src: url(https://geek.s3.ladydaily.com/Cousine-Bold-4.woff2) format('woff2');
     font-display: swap;
 }
 :root{
