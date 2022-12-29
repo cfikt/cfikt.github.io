@@ -6820,10 +6820,9 @@ table th {
     border: 1px solid #000000;
     background-color: #000000;
     color: #ffffff;
-    font-size: 14.5px;
+    font-size: 14px;
     font-family: Cousine, 'DFPKingGothicGB-medium' !important;
     font-weight: 500;
-    line-height: 1.5em;
 }
 @font-face {
     font-family: 'DFPKingGothicGB-medium';
