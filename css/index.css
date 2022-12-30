@@ -6502,20 +6502,20 @@ h1::before, h2::before, h3::before {
     transform: translateX(-50%);
     font-size: 20px;
 }
-.nav-fixed #nav{
-    transform: translateY(58px)!important;
-    -webkit-transform: translateY(58px)!important;
-    -moz-transform: translateY(58px)!important;
-    -ms-transform: translateY(58px)!important;
-    -o-transform: translateY(58px)!important;
-}
-#nav{
-    transition: none!important;
-    -webkit-transition: none!important;
-    -moz-transition: none!important;
-    -ms-transition: none!important;
-    -o-transition: none!important;
-}
+/* .nav-fixed #nav{ */
+    /* transform: translateY(58px)!important; */
+    /* -webkit-transform: translateY(58px)!important; */
+    /* -moz-transform: translateY(58px)!important; */
+    /* -ms-transform: translateY(58px)!important; */
+    /* -o-transform: translateY(58px)!important; */
+/* } */
+/* #nav{ */
+    /* transition: none!important; */
+    /* -webkit-transition: none!important; */
+    /* -moz-transition: none!important; */
+    /* -ms-transition: none!important; */
+    /* -o-transition: none!important; */
+/* } */
 #nav *::after{
     background-color: transparent!important;
 }
@@ -6652,7 +6652,7 @@ div#archive {
 
 /* 代码块 */
 #article-container pre {
-    font-family: Cousine, 'Noto Sans SC' !important;
+    font-family: Cousine, 'DFPKingGothicGB-medium' !important;
     /* font-weight: bold; */
 }
 
@@ -6665,7 +6665,7 @@ div#archive {
     background-color: #ff980033;
     /* margin: 0 4px; */
     /* padding: 3px 4px; */
-    font-size: 16.5px;
+    font-size: 14.88px;
     font-family: monospace !important;
 }
 
