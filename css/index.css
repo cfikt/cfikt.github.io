@@ -6317,6 +6317,19 @@ div#category {
     font-size: 14.5px;
 }
 
+/* 引用块 */
+[data-theme="dark"]
+blockquote {
+    color: #ffffffb3;
+    /* padding: 0.5em 5px; */
+    /* margin: 1.5em 0px; */
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    /* font-weight: bold; */
+    border-left: 3px solid #009aff;
+    background-color: rgb(73 177 245 / 20%);
+}
+
 /* 查看更多 字体颜色 */
 [data-theme="dark"]
 .magnet_link_more {
@@ -6561,6 +6574,7 @@ b, strong {
 }
 
 /* 引用块 */
+[data-theme="light"]
 blockquote {
     color: #000;
     /* padding: 0.5em 5px; */
@@ -6635,6 +6649,8 @@ div#archive {
 /* figure.highlight pre .comment { */
     /* font-family: consolas, 'DFPKingGothicGB-medium'; */
 /* } */
+
+/* 代码块 */
 #article-container pre {
     font-family: Cousine, 'Noto Sans SC' !important;
     /* font-weight: bold; */
@@ -6643,8 +6659,10 @@ div#archive {
 /* 行内代码 */
 [data-theme="light"]
 #article-container code {
-    color: #24D;
-    background-color: #a1cdf32e;
+    /* color: #24D; */
+    /* background-color: #a1cdf32e; */
+    color: #000000;
+    background-color: #ff980033;
     /* margin: 0 4px; */
     /* padding: 3px 4px; */
     font-size: 16.5px;
@@ -6819,8 +6837,9 @@ table th {
 #article-container kbd {
     border: 1px solid #000000;
     background-color: #000000;
+    padding: 5px 5px 2px 5px;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 13px;
     font-family: Cousine, 'DFPKingGothicGB-medium' !important;
     font-weight: 500;
 }
