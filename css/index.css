@@ -6585,14 +6585,14 @@ blockquote {
     border-left: 3px solid #009aff;
     background-color: rgb(73 177 245 / 20%);
 }
-blockquote::before {
-    color: rgb(67, 65, 65);
-    content: "📑";
-    font-size: 18px;
-    line-height: 2em;
-    margin-right: 0.25em;
-    vertical-align: -0.5em;
-}
+/* blockquote::before { */
+    /* color: rgb(67, 65, 65); */
+    /* content: "📑"; */
+    /* font-size: 18px; */
+    /* line-height: 2em; */
+    /* margin-right: 0.25em; */
+    /* vertical-align: -0.5em; */
+/* } */
 
 /* 无序列表 */
 #article-container.post-content ul > li {
@@ -6609,6 +6609,9 @@ blockquote::before {
     font-family: var(--font-family);
     line-height: 24px;
     margin: 10px 0px 10px -22px;
+}
+ol li::marker {
+    color: rgb(204 172 141);
 }
 
 /* 目录 */
@@ -6838,11 +6841,18 @@ table th {
     border: 1px solid #000000;
     background-color: #000000;
     padding: 5px 5px 2px 5px;
-    color: #ffffff;
+    color: rgb(255 255 255 / 50%);
     font-size: 13px;
     font-family: Cousine, 'DFPKingGothicGB-medium' !important;
     font-weight: 500;
 }
+
+/* .note { */
+    /* position: relative; */
+    /* margin: 0px -10px 0px; */
+    /* padding: 15px; */
+    /* border-radius: 3px; */
+/* } */
 @font-face {
     font-family: 'DFPKingGothicGB-medium';
     src: url(//lf3-pendah.bytetos.com/obj/pendah/fonts/4dc07b0829c06863) format('truetype');

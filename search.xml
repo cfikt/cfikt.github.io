@@ -8,7 +8,7 @@
       <link href="/docker/docker/"/>
       <url>/docker/docker/</url>
       
-        <content type="html"><![CDATA[<p>在学习 Docker 之前，建议提前了解容器技术，便于在学习 Docker 的过程中理解其中的实现原理或者实现过程；在学习了一些相对头疼的概念知识之后，可以更轻松的面对 Docker 容器技术的学习</p><ul><li><a href="/docker/docker01/" title="认识容器">认识容器</a></li><li><a href="/docker/docker02/" title="容器相关技术">容器相关技术</a></li></ul><p>​</p><p>​</p><p>在了解了容器相关的概念知识之后，接下来就正式开始进入 Docker 的学习之旅了，不管学习任何服务，第一步，也是最重要的一步，那就是将其部署在自己的环境上，否则一切都是空谈</p><ul><li><a href="/docker/docker03/" title="Docker 简介">Docker 简介</a></li><li><a href="/docker/docker04/" title="Docker 安装">Docker 安装</a></li></ul><p>​</p><p>​</p><p>镜像是 Docker 中最重要的三大概念之一，镜像是运行容器的必要条件，使用镜像可以方便、快速的创建并启动容器</p><ul><li><a href="/docker/docker05/" title="Docker 镜像管理">Docker 镜像管理</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<p>在学习 Docker 之前，建议提前了解容器技术，便于在学习 Docker 的过程中理解其中的实现原理或者实现过程；在学习了一些相对头疼的概念知识之后，可以更轻松的面对 Docker 容器技术的学习</p><ul><li><a href="/docker/docker01/" title="认识容器">认识容器</a></li><li><a href="/docker/docker02/" title="容器相关技术">容器相关技术</a></li></ul><p>​    </p><p>​    </p><p>在了解了容器相关的概念知识之后，接下来就正式开始进入 Docker 的学习之旅了，不管学习任何服务，第一步，也是最重要的一步，那就是将其部署在自己的环境上，否则一切都是空谈</p><ul><li><a href="/docker/docker03/" title="Docker 简介">Docker 简介</a></li><li><a href="/docker/docker04/" title="Docker 安装">Docker 安装</a></li></ul><p>​    </p><p>​    </p><p>镜像是 Docker 中最重要的三大概念之一，镜像是运行容器的必要条件，使用镜像可以方便、快速的创建并启动容器</p><ul><li><a href="/docker/docker05/" title="Docker 镜像管理">Docker 镜像管理</a></li><li><a href="/docker/docker07/" title="Docker 镜像制作">Docker 镜像制作</a></li></ul>]]></content>
       
       
       <categories>
