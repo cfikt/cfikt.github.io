@@ -5136,12 +5136,12 @@ blockquote.pullquote.right {
   margin: 10px 0;
   color: #000 !important;
   text-decoration: none !important;
-  background: #00ffe7;
+  background: rgba(0,150,136,0.341);
   border-radius: 10px;
   padding: 12px;
 }
 .link_card:hover {
-  background: #00bcd4;
+  background: #607d8b;
   color: #fff !important;
 }
 .link_card .link_icon,
