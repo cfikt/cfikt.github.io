@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Docker Compose 简介 | 极客之旅</title><meta name="robots" content="noindex"><meta name="author" content="jet lag"><meta name="copyright" content="jet lag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Docker Compose 简介当在一个宿主机内启动较多容器时，如果手动操作会比较繁琐且容器出错，也比较难以控制多个容器之间的启动顺序或者依赖关系，此时推荐使用 Docker 官方的单机编排工具 docker-compose ​     docker-compose 是 Docker 官方的一种单机编排服务，是一个管理多个容器的工具。使用 docker-compose 可以解决容器之间的依赖关系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker Compose 简介">
+<meta property="og:url" content="https://www.geekcn.cn/docker/docker13/">
+<meta property="og:site_name" content="极客之旅">
+<meta property="og:description" content="Docker Compose 简介当在一个宿主机内启动较多容器时，如果手动操作会比较繁琐且容器出错，也比较难以控制多个容器之间的启动顺序或者依赖关系，此时推荐使用 Docker 官方的单机编排工具 docker-compose ​     docker-compose 是 Docker 官方的一种单机编排服务，是一个管理多个容器的工具。使用 docker-compose 可以解决容器之间的依赖关系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png">
+<meta property="article:published_time" content="2023-01-03T18:22:41.511Z">
+<meta property="article:modified_time" content="2023-01-04T04:07:07.533Z">
+<meta property="article:author" content="jet lag">
+<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="容器云">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png"><link rel="shortcut icon" href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/cloud.svg"><link rel="canonical" href="https://www.geekcn.cn/docker/docker13/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker Compose 简介',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-04 12:07:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/black/pace-theme-center-circle.css"/><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">极客之旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Docker Compose 简介</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-03T18:22:41.511Z" title="发表于 2023-01-04 02:22:41">2023-01-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-04T04:07:07.533Z" title="更新于 2023-01-04 12:07:07">2023-01-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/">Docker 容器技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Docker-Compose-简介"><a href="#Docker-Compose-简介" class="headerlink" title="Docker Compose 简介"></a>Docker Compose 简介</h1><p>当在一个宿主机内启动较多容器时，如果手动操作会比较繁琐且容器出错，也比较难以控制多个容器之间的启动顺序或者依赖关系，此时推荐使用 Docker 官方的单机编排工具 docker-compose</p>
+<p>​    </p>
+<p>docker-compose 是 Docker 官方的一种单机编排服务，是一个管理多个容器的工具。使用 docker-compose 可以解决容器之间的依赖关系，并且可以替代 docker 命令对容器创建、启动和停止等手工操作</p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="Docker-Compose-安装"><a href="#Docker-Compose-安装" class="headerlink" title="Docker Compose 安装"></a>Docker Compose 安装</h1><p>docker-compose 安装拥有多种方法：</p>
+<ol>
+<li>通过 Python 安装工具 pip 在线安装</li>
+<li>直接通过 yum 仓库在线安装</li>
+<li>提前将安装包下载到本地，使用安装包离线安装</li>
+</ol>
+<p>​    </p>
+<h2 id="pip-在线安装"><a href="#pip-在线安装" class="headerlink" title="pip 在线安装"></a>pip 在线安装</h2><p>pip 是 Python 的一个安装工具，类似于 CentOS 的 yum 以及 Ubuntu 的 apt 命令。通过 pip 可以安装最新版本的 docker-compose，<strong>推荐使用</strong></p>
+<div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#1-1">CentOS & Rocky</button></li><li class="tab"><button type="button" data-href="#1-2">Ubuntu</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="1-1"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 pip</span></span><br><span class="line">[root@docker ~]<span class="comment"># yum install -y python3-pip</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 docker-compose</span></span><br><span class="line">[root@docker ~]<span class="comment"># pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple docker-compose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 docker-compose 版本</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker-compose --version</span></span><br><span class="line">docker-compose version 1.29.2, build unknown</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="1-2"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 pip</span></span><br><span class="line">[root@docker ~]<span class="comment"># apt update</span></span><br><span class="line">[root@docker ~]<span class="comment"># apt install -y python3-pip</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 docker-compose</span></span><br><span class="line">[root@docker ~]<span class="comment"># pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple docker-compose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 docker-compose 版本</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker-compose --version</span></span><br><span class="line">docker-compose version 1.29.2, build unknown</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>
+<p>​    </p>
+<h2 id="yum-在线安装"><a href="#yum-在线安装" class="headerlink" title="yum 在线安装"></a>yum 在线安装</h2><p>直接通过系统包仓库使用 yum 在线安装版本较旧，不建议使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">[root@ubuntu1804 ~]<span class="comment"># apt -y install docker-compose</span></span><br><span class="line">[root@ubuntu1804 ~]<span class="comment"># docker-compose --version</span></span><br><span class="line">docker-compose version 1.17.1, build unknown</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS7 安装，依赖 EPEL 源</span></span><br><span class="line">[root@centos7 ~]<span class="comment"># yum -y install docker-compose</span></span><br><span class="line">[root@centos7 ~]<span class="comment"># docker-compose --version</span></span><br><span class="line">docker-compose version 1.18.0, buil 8dd22a9</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="离线安装"><a href="#离线安装" class="headerlink" title="离线安装"></a>离线安装</h2><p>提前将安装包下载到本地，使用安装包离线安装，适用于无网络环境下安装，<strong>此方法可指定安装版本，推荐使用</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载安装包</span></span><br><span class="line">[root@docker ~]<span class="comment"># curl -L https://get.daocloud.io/docker/compose/releases/download/v2.14.2/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 赋予可执行权限</span></span><br><span class="line">[root@docker ~]<span class="comment"># chmod +x /usr/local/bin/docker-compose</span></span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h1 id="Docker-Compose-使用"><a href="#Docker-Compose-使用" class="headerlink" title="Docker Compose 使用"></a>Docker Compose 使用</h1><h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>官方文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/reference/">https://docs.docker.com/compose/reference/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命令格式</span></span><br><span class="line">docker compose [选项] 命令</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选项</span></span><br><span class="line">-f, --file FILE			<span class="comment"># 指定 Docker Compose 模板文件。默认为 docker-compose.yml</span></span><br><span class="line">-p, --project-name NAME		<span class="comment"># 指定项目名称。默认将当前所在目录作为项目名</span></span><br><span class="line">--log-level	LEVEL		<span class="comment"># 定义日志级别（ DEBUG, INFO, WARNING, ERROR, CRITICAL ）</span></span><br><span class="line">--verbose			<span class="comment"># 显示更多输出信息</span></span><br><span class="line">--no-ansi 			<span class="comment"># 不显示 ANSI 控制字符</span></span><br><span class="line">-v, --version 			<span class="comment"># 显示版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令选项。需要在 docker-compose.yml 文件所在目录执行</span></span><br><span class="line">up		<span class="comment"># 创建并启动容器</span></span><br><span class="line">build		<span class="comment"># 构建镜像</span></span><br><span class="line">create		<span class="comment"># 为服务创建容器</span></span><br><span class="line">down		<span class="comment"># 停止并删除容器</span></span><br><span class="line">events		<span class="comment"># 接收容器实时事件</span></span><br><span class="line"><span class="built_in">exec</span>		<span class="comment"># 在正在运行的容器中执行命令</span></span><br><span class="line">images		<span class="comment"># 显示镜像信息</span></span><br><span class="line"><span class="built_in">kill</span>		<span class="comment"># 强制终止运行中的容器</span></span><br><span class="line">logs		<span class="comment"># 查看容器日志</span></span><br><span class="line">pause		<span class="comment"># 暂停服务</span></span><br><span class="line">ps		<span class="comment"># 列出容器</span></span><br><span class="line">pull		<span class="comment"># 重新拉取镜像</span></span><br><span class="line">push		<span class="comment"># 删除镜像</span></span><br><span class="line">restart		<span class="comment"># 重新启动服务容器</span></span><br><span class="line"><span class="built_in">rm</span>		<span class="comment"># 删除停止的服务容器</span></span><br><span class="line">run		<span class="comment"># 对服务运行一次性命令</span></span><br><span class="line">start		<span class="comment"># 启动服务容器</span></span><br><span class="line">stop		<span class="comment"># 停止服务容器</span></span><br><span class="line">top		<span class="comment"># 显示正在运行的进程</span></span><br><span class="line">pause		<span class="comment"># 暂停容器中所有的进程</span></span><br><span class="line">unpause		<span class="comment"># 恢复容器中所有的进程</span></span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><p>Docker Compose 文件是一个 YAML 格式的文件，需要严格注意首行缩进。docker-compose 命令默认会调用当前目录下的 docker-compose.yml 文件，因此执行 docker-compose 命令之前需要先进入 docker-compose.yml 文件所在目录</p>
+<p>​    </p>
+<p>Docker Compose 的 YAML 文件包含 4 个一级标签：</p>
+<ul>
+<li>version：docker-compose.yml 文件版本，版本不同，语法和格式有所不同。必须指定，并且必须位于文件首行</li>
+<li>services：定义不同的应用服务</li>
+<li>networks：用于指引 Docker 创建新的网络</li>
+<li>volumes：用于指引 Docker 来创建新的卷</li>
+</ul>
+<p>​    </p>
+<p>先来看一份 docker-compose.yml 文件，其配置文件详细解析可以参考以下文章：</p>
+<a href="https://geekcn.cn/docker/docker09" target="_blank" title="Docker Compose 文件详解" referrerPolicy="no-referrer" class="link_card"><div class="link_icon"><svg t="1672774266916" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1289" width="200" height="200"><path d="M757.76 907.264H264.2432c-73.1136 0-132.352-59.2384-132.352-132.352v-510.464c0-73.1136 59.2384-132.352 132.352-132.352H757.76c73.1136 0 132.352 59.2384 132.352 132.352v510.464c0 73.1136-59.2384 132.352-132.352 132.352z" fill="#F5D126" p-id="1290"></path><path d="M782.592 132.096H684.544c59.392 0 107.5712 58.0608 107.5712 129.6896v515.84c0 71.6288-48.1792 129.6896-107.5712 129.6896h97.9968c59.392 0 107.5712-58.0608 107.5712-129.6896V261.7856c0-71.6288-48.128-129.6896-107.52-129.6896z" fill="#F2B200" p-id="1291"></path><path d="M757.76 922.624H264.2432c-81.4592 0-147.712-66.2528-147.712-147.712v-510.464c0-81.4592 66.2528-147.712 147.712-147.712H757.76c81.4592 0 147.712 66.2528 147.712 147.712v510.464c0 81.4592-66.2528 147.712-147.712 147.712zM264.2432 147.456c-64.512 0-116.992 52.48-116.992 116.992v510.464c0 64.512 52.48 116.992 116.992 116.992H757.76c64.512 0 116.992-52.48 116.992-116.992v-510.464c0-64.512-52.48-116.992-116.992-116.992H264.2432z" fill="#333333" p-id="1292"></path><path d="M719.872 631.6032H302.1824c-8.4992 0-15.36-6.8608-15.36-15.36s6.8608-15.36 15.36-15.36h417.6896c8.4992 0 15.36 6.8608 15.36 15.36s-6.8608 15.36-15.36 15.36zM719.872 773.6832H302.1824c-8.4992 0-15.36-6.8608-15.36-15.36s6.8608-15.36 15.36-15.36h417.6896c8.4992 0 15.36 6.8608 15.36 15.36s-6.8608 15.36-15.36 15.36z" fill="#333333" p-id="1293"></path><path d="M452.608 235.3152h-24.576c-8.4992 0-15.36-6.8608-15.36-15.36s6.8608-15.36 15.36-15.36h24.576c8.4992 0 15.36 6.8608 15.36 15.36s-6.8608 15.36-15.36 15.36zM371.5584 235.3152H255.488c-8.4992 0-15.36-6.8608-15.36-15.36s6.8608-15.36 15.36-15.36h116.0704c8.4992 0 15.36 6.8608 15.36 15.36s-6.8608 15.36-15.36 15.36z" fill="#FFFFFF" p-id="1294"></path><path d="M302.1824 300.0832H512v209.8176H302.1824z" fill="#FFFCE3" p-id="1295"></path><path d="M452.608 300.0832h59.3408v209.8176H452.608z" fill="#FFF5B8" p-id="1296"></path><path d="M511.9488 525.2096H302.1824c-8.4992 0-15.36-6.8608-15.36-15.36V300.0832c0-8.4992 6.8608-15.36 15.36-15.36H512c8.4992 0 15.36 6.8608 15.36 15.36v209.8176a15.40608 15.40608 0 0 1-15.4112 15.3088z m-194.4064-30.72H496.64V315.4432H317.5424v179.0464z" fill="#333333" p-id="1297"></path></svg></div><div class="link_content"><div class="link_title">Docker Compose 文件详解</div><div class="link_desc">Docker Compose 文件是一个 YAML 格式的文件，本篇文章总结介绍一些常用的 docker-compose.yml 文件标签</div></div></a>
+<details class="folding-tag" cyan open><summary> 举个小栗子： </summary>
+              <div class='content'>
+              <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 准备一个 docker-compose.yml 文件</span></span><br><span class="line">[root@docker wordpress]<span class="comment"># cat docker-compose.yml</span></span><br><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">    mysql:</span><br><span class="line">        image: mysql:8.0.29-oracle</span><br><span class="line">        container_name: mysql</span><br><span class="line">        restart: always</span><br><span class="line">        volumes:</span><br><span class="line">        - mysql-volume:/var/lib/mysql</span><br><span class="line">        networks:</span><br><span class="line">        - wordpress-network</span><br><span class="line">        environment:</span><br><span class="line">        - MYSQL_ROOT_PASSWORD=123456</span><br><span class="line">        - MYSQL_DATABASE=wordpress</span><br><span class="line">        - MYSQL_USER=wordpress</span><br><span class="line">        - MYSQL_PASSWORD=123456</span><br><span class="line"></span><br><span class="line">    wordpress:</span><br><span class="line">        image: wordpress:php7.4-apache</span><br><span class="line">        container_name: wordpress</span><br><span class="line">        restart: always</span><br><span class="line">        volumes:</span><br><span class="line">        - wordpress-volume:/var/www/html</span><br><span class="line">        networks:</span><br><span class="line">        - wordpress-network</span><br><span class="line">        environment:</span><br><span class="line">        - WORDPRESS_DB_HOST=mysql:3306</span><br><span class="line">        - WORDPRESS_DB_USER=wordpress</span><br><span class="line">        - WORDPRESS_DB_PASSWORD=123456</span><br><span class="line">        - WORDPRESS_DB_NAME=wordpress</span><br><span class="line">        ports:</span><br><span class="line">        - <span class="string">&quot;80:80&quot;</span></span><br><span class="line">        depends_on:</span><br><span class="line">        - mysql</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line">    mysql-volume:</span><br><span class="line">    wordpress-volume:</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">    wordpress-network:</span><br><span class="line">        driver: bridge</span><br><span class="line">        ipam:</span><br><span class="line">            config:</span><br><span class="line">            - subnet: 192.168.10.0/24</span><br><span class="line">            - gateway: 192.168.10.1</span><br><span class="line">            </span><br><span class="line"><span class="comment"># 语法检查</span></span><br><span class="line">[root@docker wordpress]<span class="comment"># docker-compose config -q</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建并后台启动容器</span></span><br><span class="line">[root@docker wordpress]<span class="comment"># docker-compose up -d</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器</span></span><br><span class="line">[root@docker wordpress]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                 NAMES</span><br><span class="line">932de91e88e9        wordpress:php7.4-apache   <span class="string">&quot;docker-entrypoint.s…&quot;</span>   8 seconds ago       Up 8 seconds        0.0.0.0:80-&gt;80/tcp    wordpress</span><br><span class="line">fe8a832b37da        mysql:8.0.29-oracle       <span class="string">&quot;docker-entrypoint.s…&quot;</span>   8 seconds ago       Up 8 seconds        3306/tcp, 33060/tcp   mysql</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn">jet lag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn/docker/docker13/">https://www.geekcn.cn/docker/docker13/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.geekcn.cn" target="_blank">极客之旅</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" alt="支付宝支付"/></a><div class="post-qr-code-desc">支付宝支付</div></li></ul></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/docker/docker/" title="Docker 容器技术"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/cover/docker.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">Docker 容器技术</div></div></a></div><div><a href="/k8s/k8s01/" title="Kubernetes 简介"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-29</div><div class="title">Kubernetes 简介</div></div></a></div><div><a href="/k8s/install02/" title="Kubernetes 高可用部署"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-03</div><div class="title">Kubernetes 高可用部署</div></div></a></div><div><a href="/k8s/install01/" title="Kubernetes 部署"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-02</div><div class="title">Kubernetes 部署</div></div></a></div><div><a href="/tasks/task/" title="云计算 SRE 运维 — 作业集"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/cover/task.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-26</div><div class="title">云计算 SRE 运维 — 作业集</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Docker Compose 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose-%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">Docker Compose 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pip-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">pip 在线安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yum-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">yum 在线安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">离线安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose-%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">Docker Compose 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose-yml"><span class="toc-number">3.2.</span> <span class="toc-text">docker-compose.yml</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: #2F4F4F"><div id="footer-wrap"><div class="footer_custom_text">技术的道路没有尽头</div><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">本网站由 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/ypy.png" width="50px"> 提供 CDN 加速/云存储服务</a></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/utils.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/main.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/search/local-search.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.bootcdn.net/ajax/libs/mermaid/9.1.7/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async src="https://cdn.jsdelivr.net/npm/js-heo@1.0.13/categoryBar/categoryBar.js" data-pjax=”” defer=””></script><script async src="/js/grayscale.js"></script><script async src="/js/background.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/click-heart.min.js" async="async" mobile="false"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

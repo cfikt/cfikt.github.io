@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Nginx 配置文件 | 极客之旅</title><meta name="robots" content="noindex"><meta name="author" content="jet lag"><meta name="copyright" content="jet lag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Nginx 配置文件配置文件说明Nginx 配置文件（指令）官方手册：https:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;docs&#x2F;dirindex.html  Nginx 配置文件组成部分：  主配置文件：nginx.conf 子配置文件：include conf.d&#x2F;*.conf mime.types：支持的 mime 类型，资源媒体类型（即导入支持的文件类型） 其它文件：其它协议相关的配置文件  ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx 配置文件">
+<meta property="og:url" content="https://www.geekcn.cn/nginx/nginx01/">
+<meta property="og:site_name" content="极客之旅">
+<meta property="og:description" content="Nginx 配置文件配置文件说明Nginx 配置文件（指令）官方手册：https:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;docs&#x2F;dirindex.html  Nginx 配置文件组成部分：  主配置文件：nginx.conf 子配置文件：include conf.d&#x2F;*.conf mime.types：支持的 mime 类型，资源媒体类型（即导入支持的文件类型） 其它文件：其它协议相关的配置文件  ​">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-18T15:16:22.282Z">
+<meta property="article:modified_time" content="2023-01-04T06:16:30.225Z">
+<meta property="article:author" content="jet lag">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/cloud.svg"><link rel="canonical" href="https://www.geekcn.cn/nginx/nginx01/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Nginx 配置文件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-04 14:16:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/black/pace-theme-center-circle.css"/><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">极客之旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Nginx 配置文件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-18T15:16:22.282Z" title="发表于 2022-12-18 23:16:22">2022-12-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-04T06:16:30.225Z" title="更新于 2023-01-04 14:16:30">2023-01-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Nginx-%E6%9C%8D%E5%8A%A1/">Nginx 服务</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Nginx-配置文件"><a href="#Nginx-配置文件" class="headerlink" title="Nginx 配置文件"></a>Nginx 配置文件</h1><h2 id="配置文件说明"><a href="#配置文件说明" class="headerlink" title="配置文件说明"></a>配置文件说明</h2><p>Nginx 配置文件（指令）官方手册：<a target="_blank" rel="noopener" href="https://nginx.org/en/docs/dirindex.html">https://nginx.org/en/docs/dirindex.html</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://files-cloud.oss-cn-guangzhou.aliyuncs.com/img/202301041416460.png" alt="image-20230104141629387"></p>
+<p>Nginx 配置文件组成部分：</p>
+<ul>
+<li><strong>主配置文件：nginx.conf</strong></li>
+<li><strong>子配置文件：include conf.d/*.conf</strong></li>
+<li>mime.types：支持的 mime 类型，资源媒体类型（即导入支持的文件类型）</li>
+<li>其它文件：其它协议相关的配置文件</li>
+</ul>
+<p>​    </p>
+<h2 id="配置文件格式"><a href="#配置文件格式" class="headerlink" title="配置文件格式"></a>配置文件格式</h2><p>Nginx 中配置文件由指令块和指令构成，每条指令以分号结尾，指令与值之间以空格分隔</p>
+<ul>
+<li>指令块：以大括号将多条指令组织在一起，且支持嵌套指令块</li>
+<li>允许使用 INCLUDE 语句组合多个配置文件，提高可维护性</li>
+<li>部分指令支持正则表达式，支持 $ 符号使用变量（内建变量直接引用；自定义变量使用 SET 命令定义）</li>
+</ul>
+<p>​    </p>
+<h2 id="配置文件结构"><a href="#配置文件结构" class="headerlink" title="配置文件结构"></a>配置文件结构</h2><p>Nginx 主配置文件由四部分组成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Main 主配置段，位于配置文件最上方</span></span><br><span class="line">main block：主配置段，即全局配置段，对 http, mail 都有效</span><br><span class="line"></span><br><span class="line"><span class="comment"># 事件驱动相关的配置；主要影响 Nginx 服务器与用户的网络连接</span></span><br><span class="line">                    <span class="comment"># 比如是否允许同时接受多个网络连接</span></span><br><span class="line">                    <span class="comment"># 使用哪种事件驱动模型处理请求</span></span><br><span class="line">                    <span class="comment"># 每个工作进程可以同时支持的最大连接数</span></span><br><span class="line">                    <span class="comment"># 是否开启对多工作进程下的网络连接进行序列化等</span></span><br><span class="line">event &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># HPPT/HTTPS 协议相关配置段</span></span><br><span class="line">http &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认配置文件不包括下面两个块</span></span><br><span class="line"><span class="comment"># mail 协议相关配置段</span></span><br><span class="line">mail &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># strea m服务器相关配置段</span></span><br><span class="line">stream &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h1 id="全局配置块"><a href="#全局配置块" class="headerlink" title="全局配置块"></a>全局配置块</h1><p>Main 全局配置段，常见的配置指令分类：</p>
+<ul>
+<li>正常运行必备的配置</li>
+<li>优化性能相关的配置</li>
+<li>用于调试及定位问题相关的配置</li>
+<li>事件驱动相关的配置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局配置端，对全局生效</span></span><br><span class="line"><span class="comment"># 主要设置 Nginx 的启动用户/组，启动的工作进程数量，工作模式，Nginx 的 PID 路径，日志路径等</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动用户/组</span></span><br><span class="line">user nginx nginx;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Nginx 的工作进程数量；auto 表示 CPU 核数</span></span><br><span class="line">worker_processes [ number | auto ];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 Nginx 工作进程与 CPU 进行绑定</span></span><br><span class="line">        <span class="comment"># auto：自动绑定</span></span><br><span class="line">        <span class="comment"># 00000001：0 号 CPU</span></span><br><span class="line">        <span class="comment"># 00000010：1 号 CPU</span></span><br><span class="line">        <span class="comment"># 10000000：7 号 CPU</span></span><br><span class="line">worker_cpu_affinity [ number | auto];</span><br><span class="line">											</span><br><span class="line"><span class="comment"># 错误日志记录配置</span></span><br><span class="line">error_log file [ debug | info | notice | warn | error | crit | alert | emerg ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># pid 文件保存路径</span></span><br><span class="line">pid /apps/nginx/logs/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 工作进程优先级：-20~20(19)，数字越低优先级越高</span></span><br><span class="line">worker_priority 0;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有工作进程能打开的文件数量上限，即最大并发连接数（每打开一个连接就会对应的打开一个文件描述符）</span></span><br><span class="line"><span class="comment"># 包括：Nginx 的所有连接（例如与代理服务器的连接等），最好与 ulimit -n 或者 limits.conf 的值保持一致</span></span><br><span class="line">worker_rlimit_nofile number;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 前台运行 Nginx 服务；用于测试、Docker 等环境</span></span><br><span class="line">daemon [ off | on ];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否开启 Nginx 的 master-worker 工作模式，仅用于开发调试场景，默认 on</span></span><br><span class="line">master_process [ off | on ];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 事件驱动相关的配置；主要影响 Nginx 服务器与用户的网络连接</span></span><br><span class="line">                    <span class="comment"># 比如是否允许同时接受多个网络连接</span></span><br><span class="line">                    <span class="comment"># 使用哪种事件驱动模型处理请求</span></span><br><span class="line">                    <span class="comment"># 每个工作进程可以同时支持的最大连接数</span></span><br><span class="line">                    <span class="comment"># 是否开启对多工作进程下的网络连接进行序列化等</span></span><br><span class="line">events &#123;</span><br><span class="line">	<span class="comment"># 设置单个工作进程的最大并发连接数</span></span><br><span class="line">	worker_connections number;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 使用 EPOLL 事件驱动（即I/O多路复用驱动）</span></span><br><span class="line">	use epoll;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 是否使用“惊群”</span></span><br><span class="line">	<span class="comment"># on：Nginx 的多个工作进程将以串行方式接入新连接（工作进程轮流处理用户请求，防止同时唤醒所有工作进程），建议 on</span></span><br><span class="line">	<span class="comment"># off：新连接将通报给所有工作进程（新请求会唤醒所有工作进程，进行竞争接收用户请求），默认 off</span></span><br><span class="line">	accept_mutex [ on | off ];</span><br><span class="line"></span><br><span class="line">	<span class="comment"># on：Nginx 服务器的每个工作进程可以同时接受多个新的网络连接，建议 on</span></span><br><span class="line">	<span class="comment"># off：一个工作进程一次只能接受一个新的网络连接，默认 off</span></span><br><span class="line">	multi_accept [ on | off ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h1 id="HTTP-配置块"><a href="#HTTP-配置块" class="headerlink" title="HTTP 配置块"></a>HTTP 配置块</h1><p>http 块：用于每个 Server（虚拟主机） 的公共配置</p>
+<ul>
+<li>server：定义一个虚拟主机</li>
+<li>location：定义该虚拟主机的 URL 特性</li>
+</ul>
+<p>​    </p>
+<h2 id="HTTP-配置结构"><a href="#HTTP-配置结构" class="headerlink" title="HTTP 配置结构"></a>HTTP 配置结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">http &#123;			<span class="comment"># 各 server 的公共配置</span></span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	server &#123;    	<span class="comment"># 每个 server 用于定义一个虚拟主机，第一个 server 为默认虚拟服务器</span></span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">	server &#123;</span><br><span class="line">		...</span><br><span class="line">		server_name       			<span class="comment"># 虚拟主机名</span></span><br><span class="line">		root 					<span class="comment"># 主目录</span></span><br><span class="line">		<span class="built_in">alias</span> 			 		<span class="comment"># 路径别名</span></span><br><span class="line">		location [OPERATOR] URL &#123; 		<span class="comment"># 指定 URL 的特性</span></span><br><span class="line">			...</span><br><span class="line">			<span class="keyword">if</span> CONDITION &#123;</span><br><span class="line">			...</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="HTTP-配置项"><a href="#HTTP-配置项" class="headerlink" title="HTTP 配置项"></a>HTTP 配置项</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">	<span class="comment"># 导入支持的文件类型</span></span><br><span class="line">	include mime.types;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 除了 mime.types 外，设置其他文件的默认类型，访问其他类型时会提示下载</span></span><br><span class="line">	default_type application/octet-stream;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 零复制技术</span></span><br><span class="line">	sendfile on;</span><br><span class="line">	<span class="comment"># 开启 sendfile 的情况下，合并请求后统一发送给客户端</span></span><br><span class="line">	tcp_nopush on;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 在开启了持久连接模式下的连接是否启用延迟发送</span></span><br><span class="line">	<span class="comment"># on：不延迟发送，立即发送用户响应报文；默认值</span></span><br><span class="line">	<span class="comment"># off：延迟 0.2s 发送</span></span><br><span class="line">	tcp_nodelay off;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 设置会话保持时间（即长连接），默认 75，通常配置在 http 字段作为全局站点配置</span></span><br><span class="line">	<span class="comment"># 参数1：指定了客户端与服务器 keep-alive 的超时时间，值为 0 将禁用 keep-alive 功能</span></span><br><span class="line">	<span class="comment"># 参数2：在 HTTP 响应头 &quot;Keep-Alive: timeout=time&quot; 字段中设置一个值（可选）</span></span><br><span class="line">	keepalive_timeout 60 60;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 一次会话保持期间允许请求资源的最大数量，默认 1000，建议调大</span></span><br><span class="line">	keepalive_requests number;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 是否开启文件压缩</span></span><br><span class="line">	gzip on;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 是否在响应报文中的 Content-Type 显示指定的字符集，默认 off</span></span><br><span class="line">	charset [ charset | off ];</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 是否在响应报文的 Server 首部显示 Nginx 版本</span></span><br><span class="line">	server_tokens [ on | off | build | string ];</span><br><span class="line">	</span><br><span class="line">	server &#123;</span><br><span class="line">		<span class="comment"># 设置监听地址和端口</span></span><br><span class="line">		listen 80;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 设置服务器名称；以空格隔开设置多个（支持正则表达式）</span></span><br><span class="line">		server_name localhost;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 设置编码格式</span></span><br><span class="line">		charset utf-8;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 单独设置匹配 URI 地址进行处理</span></span><br><span class="line">		location &#123;</span><br><span class="line">			<span class="comment"># 网站路径</span></span><br><span class="line">			root	 html;</span><br><span class="line">			</span><br><span class="line">			<span class="comment"># 指定网站初始页</span></span><br><span class="line">			index 	 index.html index.htm;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 定义错误页面</span></span><br><span class="line">		error_page 		500 502 503 504 	/50x.html;</span><br><span class="line">		location = /50x.html &#123;</span><br><span class="line">			root html;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="MIME"><a href="#MIME" class="headerlink" title="MIME"></a>MIME</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">	<span class="comment"># 导入支持的文件类型</span></span><br><span class="line">	include       mime.types;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 除了 mime.types 外，设置其他文件的默认类型，访问其他类型时会提示下载</span></span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    </span><br><span class="line">    types &#123;</span><br><span class="line">    	<span class="comment"># 将 php 文件类型识别为 plain</span></span><br><span class="line">    	text/plain  php;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="指定响应报文首部"><a href="#指定响应报文首部" class="headerlink" title="指定响应报文首部"></a>指定响应报文首部</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">	<span class="comment"># 是否在响应报文中的 Content-Type 显示指定的字符集，默认 off</span></span><br><span class="line">	charset [ charset | off ];</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 是否在响应报文的 Server 首部显示 Nginx 版本</span></span><br><span class="line">	server_tokens [ on | off | build | string ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p><strong>修改版本信息：</strong></p>
+<p>如果想自定义响应报文的 Nginx 版本信息，需要修改源码文件，重新编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改源码</span></span><br><span class="line">[root@master01 ~]<span class="comment"># vim /opt/nginx-1.20.1/src/core/nginx.h</span></span><br><span class="line"><span class="comment">#define NGINX_VERSION      &quot;6.6.6&quot;					# 修改第13行</span></span><br><span class="line"><span class="comment">#define NGINX_VER          &quot;C-FikT/&quot; NGINX_VERSION			# 修改第14行</span></span><br><span class="line"></span><br><span class="line">[root@master01 ~]<span class="comment"># vim /opt/nginx-1.20.1/src/http/ngx_http_header_filter_module.c</span></span><br><span class="line">static u_char ngx_http_server_string[] = <span class="string">&quot;Server: C-FikT&quot;</span> CRLF;		<span class="comment"># 修改第49行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新编译</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试访问</span></span><br><span class="line">[root@master01 ~]<span class="comment"># curl -I 10.0.0.10</span></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: C-FikT/6.6.6</span><br><span class="line">Date: Sun, 23 Oct 2022 13:42:45 GMT</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Content-Length: 612</span><br><span class="line">Last-Modified: Sun, 23 Oct 2022 09:00:25 GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line">ETag: <span class="string">&quot;635502a9-264&quot;</span></span><br><span class="line">Accept-Ranges: bytes</span><br></pre></td></tr></table></figure>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn">jet lag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn/nginx/nginx01/">https://www.geekcn.cn/nginx/nginx01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.geekcn.cn" target="_blank">极客之旅</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" alt="支付宝支付"/></a><div class="post-qr-code-desc">支付宝支付</div></li></ul></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">Nginx 配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">配置文件说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">配置文件格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">配置文件结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">全局配置块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-%E9%85%8D%E7%BD%AE%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">HTTP 配置块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">HTTP 配置结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-number">3.2.</span> <span class="toc-text">HTTP 配置项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MIME"><span class="toc-number">3.3.</span> <span class="toc-text">MIME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E9%A6%96%E9%83%A8"><span class="toc-number">3.4.</span> <span class="toc-text">指定响应报文首部</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: #2F4F4F"><div id="footer-wrap"><div class="footer_custom_text">技术的道路没有尽头</div><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">本网站由 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/ypy.png" width="50px"> 提供 CDN 加速/云存储服务</a></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/utils.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/main.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/search/local-search.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.bootcdn.net/ajax/libs/mermaid/9.1.7/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async src="https://cdn.jsdelivr.net/npm/js-heo@1.0.13/categoryBar/categoryBar.js" data-pjax=”” defer=””></script><script async src="/js/grayscale.js"></script><script async src="/js/background.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/click-heart.min.js" async="async" mobile="false"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

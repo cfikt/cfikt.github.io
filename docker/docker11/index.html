@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Docker 网络模式 | 极客之旅</title><meta name="robots" content="noindex"><meta name="author" content="jet lag"><meta name="copyright" content="jet lag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Docker 网络连接模式Docker 网络支持 5 种网络模式：     网络模式 描述     Birdge 网桥，默认模式。创建的容器会为每一个容器分配自己的网络 IP 等相关信息，并将容器连接到一个虚拟网桥实现与外界通信   Host 新创建的容器不会创建自己的虚拟网卡，而是共享宿主机网络，直接使用宿主机的网卡和 IP 地址   None 关闭容器网络功能   Container 创建的容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 网络模式">
+<meta property="og:url" content="https://www.geekcn.cn/docker/docker11/">
+<meta property="og:site_name" content="极客之旅">
+<meta property="og:description" content="Docker 网络连接模式Docker 网络支持 5 种网络模式：     网络模式 描述     Birdge 网桥，默认模式。创建的容器会为每一个容器分配自己的网络 IP 等相关信息，并将容器连接到一个虚拟网桥实现与外界通信   Host 新创建的容器不会创建自己的虚拟网卡，而是共享宿主机网络，直接使用宿主机的网卡和 IP 地址   None 关闭容器网络功能   Container 创建的容">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png">
+<meta property="article:published_time" content="2023-01-02T07:16:50.499Z">
+<meta property="article:modified_time" content="2023-01-02T07:33:46.337Z">
+<meta property="article:author" content="jet lag">
+<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="容器云">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png"><link rel="shortcut icon" href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/cloud.svg"><link rel="canonical" href="https://www.geekcn.cn/docker/docker11/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker 网络模式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-02 15:33:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/black/pace-theme-center-circle.css"/><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">极客之旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Docker 网络模式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-02T07:16:50.499Z" title="发表于 2023-01-02 15:16:50">2023-01-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-02T07:33:46.337Z" title="更新于 2023-01-02 15:33:46">2023-01-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Docker-%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/">Docker 容器技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Docker-网络连接模式"><a href="#Docker-网络连接模式" class="headerlink" title="Docker 网络连接模式"></a>Docker 网络连接模式</h1><p>Docker 网络支持 5 种网络模式：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>网络模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Birdge</td>
+<td>网桥，默认模式。创建的容器会为每一个容器分配自己的网络 IP 等相关信息，并将容器连接到一个虚拟网桥实现与外界通信</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>新创建的容器不会创建自己的虚拟网卡，而是共享宿主机网络，直接使用宿主机的网卡和 IP 地址</td>
+</tr>
+<tr>
+<td>None</td>
+<td>关闭容器网络功能</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>创建的容器需要指定一个已经存在的容器，与该容器共享一个网络</td>
+</tr>
+<tr>
+<td>自定义网络</td>
+<td>自定义配置网段地址、网关等信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>​    </p>
+<p>安装 Docker 后，会自动创建三个网络，分别为 bridge、host、none。默认使用 birdge 模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看默认网络模式</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker network ls</span></span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">d38c8ce3b5ab        bridge              bridge              <span class="built_in">local</span></span><br><span class="line">b566e6388b3d        host                host                <span class="built_in">local</span></span><br><span class="line">cba6453bdba3        none                null                <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>默认新建的容器使用 Bridge 模式，创建容器时，可以使用 docker run 命令的 —network 选项指定网络模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 格式</span></span><br><span class="line">docker run --network &lt;mode&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;mode&gt;</span></span><br><span class="line">1. none</span><br><span class="line">2. bridge</span><br><span class="line">3. host</span><br><span class="line">4. container:&lt;容器名或容器 ID&gt;</span><br><span class="line">5. &lt;自定义网络名称&gt;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h2 id="Bridge-网络模式"><a href="#Bridge-网络模式" class="headerlink" title="Bridge 网络模式"></a>Bridge 网络模式</h2><p>Bridge 即网桥，是 Docker 的默认网络模式，此模式创建的容器会为每一个容器分配自己的网络 IP 等相关信息，并将容器连接到一个虚拟网桥实现与外界通信。Bridge 可以和外部网络进行通信，通过 SNAT 访问外网，使用 DNAT 可以让容器被外部主机访问，所以此模式也称为 NAT 模式，使用该模式需要宿主机开启路由转发功能（安装 Docker 自动开启）</p>
+<p>​    </p>
+<p>Bridge 网络模式特点：</p>
+<ul>
+<li>网络资源隔离：不同宿主机的容器无法直接通信，各自使用独立网络</li>
+<li>无需手动配置：容器默认自动获取 172.17.0.0/16 的 IP 地址</li>
+<li>可访问外网：利用宿主机的物理网卡，通过 SNAT 连接外网</li>
+<li>外部主机无法直接访问容器：可以通过配置 DNAT（即 docker run 命令的 -p 或 -P 选项） 接受外网的访问</li>
+<li><strong>性能较低：通过 NAT，网络转换导致性能的损耗</strong></li>
+<li><strong>端口管理繁琐：每个容器必须手动指定唯一的端口，容器产生端口冲容</strong></li>
+</ul>
+<p>​    </p>
+<div class="tip bolt"><p>Bridge 模式默认设置</p>
+</div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看 Bridge 模式信息</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker network inspect bridge </span></span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;Name&quot;</span>: <span class="string">&quot;bridge&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Id&quot;</span>: <span class="string">&quot;d38c8ce3b5abc798c309082d5eededb11b8417766c2339fdc5cb6dea454eb321&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Created&quot;</span>: <span class="string">&quot;2022-12-27T01:15:08.27713976+08:00&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Scope&quot;</span>: <span class="string">&quot;local&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Driver&quot;</span>: <span class="string">&quot;bridge&quot;</span>,</span><br><span class="line">        <span class="string">&quot;EnableIPv6&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;IPAM&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;Driver&quot;</span>: <span class="string">&quot;default&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Options&quot;</span>: null,</span><br><span class="line">            <span class="string">&quot;Config&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;Subnet&quot;</span>: <span class="string">&quot;172.17.0.0/16&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;Internal&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;Attachable&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;Ingress&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;ConfigFrom&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;Network&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;ConfigOnly&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;Containers&quot;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&quot;Options&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;com.docker.network.bridge.default_bridge&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="string">&quot;com.docker.network.bridge.enable_icc&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="string">&quot;com.docker.network.bridge.enable_ip_masquerade&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="string">&quot;com.docker.network.bridge.host_binding_ipv4&quot;</span>: <span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line">            <span class="string">&quot;com.docker.network.bridge.name&quot;</span>: <span class="string">&quot;docker0&quot;</span>,</span><br><span class="line">            <span class="string">&quot;com.docker.network.driver.mtu&quot;</span>: <span class="string">&quot;1500&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;Labels&quot;</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<div class="tip bolt"><p>Bridge 模式修改</p>
+</div>
+<p>Bridge 默认使用 172.17.0.1/16 网段地址，并且可以手动更改，有两种方法实现：两种方式只能选择其中一种，否则会导致冲容，Docker 服务将无法正常启动</p>
+<ul>
+<li>修改 /lib/systemd/system/docker.service 文件</li>
+<li>修改 /etc/docker/daemon.json</li>
+</ul>
+<p>​    </p>
+<details class="folding-tag" cyan open><summary> 举个小栗子：修改 /lib/systemd/system/docker.service 文件 </summary>
+              <div class='content'>
+              <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 /lib/systemd/system/docker.service 文件</span></span><br><span class="line">[root@docker ~]<span class="comment"># vim /lib/systemd/system/docker.service</span></span><br><span class="line">ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --bip=192.168.10.1/24</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启 Docker 服务</span></span><br><span class="line">[root@docker ~]<span class="comment"># systemctl daemon-reload; systemctl restart docker.service </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Bridge 网桥</span></span><br><span class="line">[root@docker ~]<span class="comment"># ip a</span></span><br><span class="line">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default </span><br><span class="line">    <span class="built_in">link</span>/ether 02:42:f9:02:a3:c8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.10.1/24 brd 192.168.10.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:f9ff:fe02:a3c8/64 scope <span class="built_in">link</span> </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<p>​    </p>
+<details class="folding-tag" cyan open><summary> 举个小栗子：修改 /etc/docker/daemon.json </summary>
+              <div class='content'>
+              <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 /etc/docker/daemon.json</span></span><br><span class="line">[root@docker ~]<span class="comment"># vim /etc/docker/daemon.json</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="string">&quot;bip&quot;</span>: <span class="string">&quot;192.168.20.1/24&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启 Docker 服务</span></span><br><span class="line">[root@docker ~]<span class="comment"># systemctl restart docker.service </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Bridge 网桥</span></span><br><span class="line">[root@docker ~]<span class="comment"># ip a</span></span><br><span class="line">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default </span><br><span class="line">    <span class="built_in">link</span>/ether 02:42:f9:02:a3:c8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.20.1/24 brd 192.168.10.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:f9ff:fe02:a3c8/64 scope <span class="built_in">link</span> </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<p>​    </p>
+<h2 id="Host-网络模式"><a href="#Host-网络模式" class="headerlink" title="Host 网络模式"></a>Host 网络模式</h2><p>使用 Host 网络模式时，新创建的容器不会创建自己的虚拟网卡，而是共享宿主机网络，直接使用宿主机的网卡和 IP 地址，因此在容器内部查看的 IP 信息就是宿主机的信息。访问容器时直接使用宿主机 IP + 容器端口即可</p>
+<div class="note warning modern"><p>该模式只共享宿主机网络资源，其它资源，如：文件系统、系统进程等仍然与宿主机保持资源隔离</p>
+</div>
+<p>​    </p>
+<p>Host 网络模式直接使用宿主机网络而无需转换，网络性能基本无损耗，但是各容器内部不能使用同一端口，适用于容器内部端口相对固定的业务</p>
+<p>​    </p>
+<p><strong>Host 网络模式特点：</strong></p>
+<ul>
+<li>共享宿主机网络</li>
+<li>网络性能无损耗</li>
+<li>网络故障排除相对简单</li>
+<li>各容器网络无隔离</li>
+<li>网络资源无法分别统计</li>
+<li>端口管理困难：容易产生端口冲突</li>
+<li>不支持端口映射</li>
+</ul>
+<p>​    </p>
+<div class="tip bolt"><p>Host 网络模式实现</p>
+</div>
+<p>在创建容器时，使用参数 --network host 指定该容器使用 Host 网络模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看宿主机网络信息</span></span><br><span class="line">[root@docker ~]<span class="comment"># ip a</span></span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether 00:0c:29:2f:3f:1b brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 10.0.0.10/24 brd 10.0.0.255 scope global noprefixroute eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::20c:29ff:fe2f:3f1b/64 scope <span class="built_in">link</span> </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default </span><br><span class="line">    <span class="built_in">link</span>/ether 02:42:f9:02:a3:c8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.1/24 brd 172.17.0.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:f9ff:fe02:a3c8/64 scope <span class="built_in">link</span> </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">       </span><br><span class="line"><span class="comment"># 创建一个容器，指定 Host 网络模式</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -d --name b1 --network host busybox:v1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器内部网络信息，与宿主机一致</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker exec b1 ip a</span></span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether 00:0c:29:2f:3f:1b brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 10.0.0.10/24 brd 10.0.0.255 scope global noprefixroute eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::20c:29ff:fe2f:3f1b/64 scope <span class="built_in">link</span> </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue </span><br><span class="line">    <span class="built_in">link</span>/ether 02:42:f9:02:a3:c8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.1/24 brd 172.17.0.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:f9ff:fe02:a3c8/64 scope <span class="built_in">link</span> </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="None-网络模式"><a href="#None-网络模式" class="headerlink" title="None 网络模式"></a>None 网络模式</h2><p>使用 None 网络模式时，Docker 容器将不会进行任何网络配置（没有网卡、IP 与路由等），因此默认无法与外界通信，需要手动添加网卡并且配置 IP 地址信息，极少使用</p>
+<p>​    </p>
+<p><strong>None 网络模式特点：</strong></p>
+<ul>
+<li>默认无网络功能，无法和外部通信</li>
+<li>无法实现端口映射</li>
+<li>适用于测试环境</li>
+</ul>
+<p>​    </p>
+<div class="tip bolt"><p>None 网络模式实现</p>
+</div>
+<p>在创建容器时，使用参数 --network none 指定该容器使用 None 网络模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个容器，指定 None 网络模式</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -d --name b1 --network none busybox:v1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器内部网络信息，只有一个回环网卡</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker exec b1 ip a</span></span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="Container-网络模式"><a href="#Container-网络模式" class="headerlink" title="Container 网络模式"></a>Container 网络模式</h2><p>使用 Container 网络模式时，创建的容器需要指定一个已经存在的容器，与该容器共享一个网络，除网络外，其它资源仍然保持相互隔离。因此，需要提前规划好两个容器的端口，避免端口冲突，而两个容器之间可以通过 lo 网卡进行通信</p>
+<p>​    </p>
+<p><strong>Container 网络模式特点：</strong></p>
+<ul>
+<li>与宿主机网络空间隔离</li>
+<li>容器间共享网络空间</li>
+<li>适合频繁的容器间的网络通信</li>
+<li>直接使用对方的网络，较少使用</li>
+</ul>
+<p>​    </p>
+<div class="tip bolt"><p>Container 网络模式实现</p>
+</div>
+<p>在创建容器时，使用参数 --network container:&lt;容器&gt; 指定该容器使用 Container 网络模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建第一个容器</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -d --name wordpress -p 80:80 -v /data/docker/wordpress:/var/www/html wordpress:php7.2-apache</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建第二个容器，指定共享第一个容器的网络</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=123456 -v /data/docker/mysql:/var/lib/mysql --network container:wordpress mysql:8.0.29-oracle</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开浏览器，输入宿主机 IP，进入 WordPress 配置页面。数据库地址输入 127.0.0.1 即可</span></span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="自定义网络模式"><a href="#自定义网络模式" class="headerlink" title="自定义网络模式"></a>自定义网络模式</h2><p>除了以上的网络模式，Docker 还支持自定义网络模式，可以自定义配置网段地址、网关等信息</p>
+<div class="note warning modern"><p>自定义网络内的容器可以直接通过容器名进行相互的访问，而无需使用 --link 选项</p>
+</div>
+<p>​    </p>
+<p>可以使用自定义网络模式，实现不同集群应用的独立网络管理，互不影响，而且在同一个网络内，可以直接利用容器名相互访问，方便快捷</p>
+<div class="tip bolt"><p>自定义网络模式实现</p>
+</div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网络管理命令</span></span><br><span class="line">docker network COMMAND</span><br><span class="line"></span><br><span class="line"><span class="comment"># 子命令</span></span><br><span class="line">connect     	<span class="comment"># 将容器连接到网络</span></span><br><span class="line">create      	<span class="comment"># 创建网络</span></span><br><span class="line">disconnect  	<span class="comment"># 从容器中断开网络连接</span></span><br><span class="line">inspect     	<span class="comment"># 查看网络详细信息</span></span><br><span class="line"><span class="built_in">ls</span>          	<span class="comment"># 列出网络列表</span></span><br><span class="line">prune       	<span class="comment"># 删除所有空闲的网络</span></span><br><span class="line"><span class="built_in">rm</span>          	<span class="comment"># 删除一个或多个网络</span></span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>创建自定义网络命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d &lt;mode&gt; --subnet &lt;CIDR&gt; --gateway &lt;网关&gt; &lt;自定义网络名称&gt;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<details class="folding-tag" cyan open><summary> 举个小栗子： </summary>
+              <div class='content'>
+              <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个自定义网络</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker network create -d bridge --subnet 192.168.10.0/24 --gateway 192.168.10.1 test-net</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网络列表</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker network ls</span></span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">8203f57be0e8        bridge              bridge              <span class="built_in">local</span></span><br><span class="line">b566e6388b3d        host                host                <span class="built_in">local</span></span><br><span class="line">cba6453bdba3        none                null                <span class="built_in">local</span></span><br><span class="line">65a89e8a9dde        test-net            bridge              <span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网络详细信息</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker network inspect test-net </span></span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;Name&quot;</span>: <span class="string">&quot;test-net&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Id&quot;</span>: <span class="string">&quot;65a89e8a9ddeea99d6a042713e4d86f12dfd110ee5a5b4b42735ca71b11b8d5b&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Created&quot;</span>: <span class="string">&quot;2022-12-29T01:27:06.43881189+08:00&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Scope&quot;</span>: <span class="string">&quot;local&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Driver&quot;</span>: <span class="string">&quot;bridge&quot;</span>,</span><br><span class="line">        <span class="string">&quot;EnableIPv6&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;IPAM&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;Driver&quot;</span>: <span class="string">&quot;default&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Options&quot;</span>: &#123;&#125;,</span><br><span class="line">            <span class="string">&quot;Config&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;Subnet&quot;</span>: <span class="string">&quot;192.168.10.0/24&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;Gateway&quot;</span>: <span class="string">&quot;192.168.10.1&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;Internal&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;Attachable&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;Ingress&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;ConfigFrom&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;Network&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;ConfigOnly&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;Containers&quot;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&quot;Options&quot;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&quot;Labels&quot;</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用自定义网络创建第一个容器</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -d --name b1 --network test-net busybox:v1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用自定义网络创建第二个容器</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -d --name b2 --network test-net busybox:v1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 同一个网络内，可以直接利用容器名相互访问</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker exec b1 ping b2</span></span><br><span class="line">PING b2 (192.168.10.3): 56 data bytes</span><br><span class="line">64 bytes from 192.168.10.3: <span class="built_in">seq</span>=0 ttl=64 time=0.085 ms</span><br><span class="line">64 bytes from 192.168.10.3: <span class="built_in">seq</span>=1 ttl=64 time=0.128 ms</span><br><span class="line">64 bytes from 192.168.10.3: <span class="built_in">seq</span>=2 ttl=64 time=0.102 ms</span><br><span class="line">64 bytes from 192.168.10.3: <span class="built_in">seq</span>=3 ttl=64 time=0.084 ms</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<p>​    </p>
+<p>​    </p>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn">jet lag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn/docker/docker11/">https://www.geekcn.cn/docker/docker11/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.geekcn.cn" target="_blank">极客之旅</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" alt="支付宝支付"/></a><div class="post-qr-code-desc">支付宝支付</div></li></ul></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/docker/docker/" title="Docker 容器技术"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/cover/docker.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">Docker 容器技术</div></div></a></div><div><a href="/k8s/k8s01/" title="Kubernetes 简介"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-29</div><div class="title">Kubernetes 简介</div></div></a></div><div><a href="/k8s/install02/" title="Kubernetes 高可用部署"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-03</div><div class="title">Kubernetes 高可用部署</div></div></a></div><div><a href="/k8s/install01/" title="Kubernetes 部署"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-02</div><div class="title">Kubernetes 部署</div></div></a></div><div><a href="/tasks/task/" title="云计算 SRE 运维 — 作业集"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/cover/task.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-26</div><div class="title">云计算 SRE 运维 — 作业集</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">Docker 网络连接模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bridge-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">Bridge 网络模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Host-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">Host 网络模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#None-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">None 网络模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Container-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">Container 网络模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">自定义网络模式</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: #2F4F4F"><div id="footer-wrap"><div class="footer_custom_text">技术的道路没有尽头</div><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">本网站由 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/ypy.png" width="50px"> 提供 CDN 加速/云存储服务</a></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/utils.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/main.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/search/local-search.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.bootcdn.net/ajax/libs/mermaid/9.1.7/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async src="https://cdn.jsdelivr.net/npm/js-heo@1.0.13/categoryBar/categoryBar.js" data-pjax=”” defer=””></script><script async src="/js/grayscale.js"></script><script async src="/js/background.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/click-heart.min.js" async="async" mobile="false"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

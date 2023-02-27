@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.geekcn.cn/k8s/install01/</loc>
+    <lastmod>2023-02-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/k8s/install02/</loc>
+    <lastmod>2023-02-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/linux/linux01/</loc>
+    <lastmod>2023-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/k8s/k8s01/</loc>
+    <lastmod>2023-01-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/docker/docker/</loc>
+    <lastmod>2023-01-03</lastmod>
+  </url>
+  <url>
+    <loc>https://www.geekcn.cn/tasks/task/</loc>
+    <lastmod>2022-12-21</lastmod>
+  </url>
+</urlset> 
