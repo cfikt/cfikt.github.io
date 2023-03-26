@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/undefined/"/>
+      <url>/undefined/</url>
+      
+        <content type="html"><![CDATA[<p>SHELL 脚本中 while 循环 [条件] 和 ((条件)) 都可以用来判断循环是否继续执行，但它们有以下不同点：</p><ol><li>while [条件]：中括号表示测试命令，这种写法适用于在循环体中需要使用命令测试条件的情况，例如：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i=0</span><br><span class="line"><span class="keyword">while</span> [ <span class="variable">$i</span> -lt 10 ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">    i=$((i+<span class="number">1</span>))</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure><ol><li>while ((条件))：双括号表示算术扩展，这种写法适用于在循环体中需要进行算术运算的情况，例如：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i=0</span><br><span class="line"><span class="keyword">while</span> ((i &lt; <span class="number">10</span>))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">    ((i++))</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Kubernetes 高可用部署</title>
       <link href="/k8s/install02/"/>
       <url>/k8s/install02/</url>
