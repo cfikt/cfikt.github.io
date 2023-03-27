@@ -6378,15 +6378,34 @@ div#category {
 /* -------------------------------------- 标题 -------------------------------------- */
 /* 一级标题 */
 #article-container.post-content h1 {
-    text-align: center;                     /* 居中 */
-    font-size: 1.8em;                       /* 大小 */
+    font-size: 1.8em;
+    padding-top: 1rem;
+    line-height: 1.2;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    margin: 2em auto 1em;
+    border: 3px solid #777;
 }
 
 /* 二级标题 */
 [data-theme="light"]
 #article-container.post-content h2 {
-    padding-left: 0px;                      /* 缩进 */
-    border-bottom: 1px dashed #000;          /* 二级标题下横线 */
+    font-size: 1.4em;
+    padding-bottom: 10px;
+    margin-top: 2rem;
+    margin-bottom: 1em;
+    color: #8064a9;
+    padding-left: 0.4em;
+    border-left: 0.4em double #8064a9;
+    border-bottom: 1px solid #8064a9;
+}
+
+/* 三级标题 */
+[data-theme="light"]
+#article-container.post-content h3 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #999;
 }
 
 /* 标题前缀 */
@@ -6469,6 +6488,11 @@ h1::before, h2::before, h3::before {
     font-size: 20px; /*一定要把字体调大点，否则效果惨不忍睹！*/
 }
 
+/* 斜体 */
+em {
+    font-style: unset;
+    font-weight: bold;
+}
 
 /* 正文字体大小 */
 div#post {
@@ -6547,12 +6571,12 @@ ol li::marker {
 /* 行内代码 */
 [data-theme="light"]
 #article-container code {
-    color: #000000;
-    /* background-color: #fff2f2; */
-    margin: 0 4px;
-    font-size: 14.88px;
-    border: 1px solid #000000;
-    padding: 1px 5px 2px 5px;
+    margin: 0px 4px;
+    border: 1px solid #d2e6f6;
+    background-color: #f2fdff;
+    padding: 0px 5px 0px 5px;
+    color: rgb(0 0 0);
+    font-size: 16px;
 }
 
 #article-container pre,
@@ -6622,7 +6646,7 @@ html.hide-aside .layout > div:first-child {
 
 /* Tabs 颜色 */
 #article-container .tabs > .tab-contents .tab-item-content.active {
-    background-color: rgb(0 0 0 / 10%);
+    background-color: #8585852e;
 }
 /* Tabs */
 #article-container .tabs > .tab-contents .tab-item-content {

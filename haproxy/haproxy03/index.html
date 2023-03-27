@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>HAProxy 调度算法 | 极客之旅</title><meta name="robots" content="noindex"><meta name="author" content="jet lag"><meta name="copyright" content="jet lag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Socat 工具socat 工具可以对服务器动态权重和其它状态进行调整 ​      查看 HAProxy 后端服务器权重  123# 查看 HAProxy 后端服务器权重[root@haproxy ~]# echo &quot;get weight www.web.com&#x2F;web01&quot; | socat stdio &#x2F;var&#x2F;lib&#x2F;haproxy&#x2F;haproxy.sock 1 (ini">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HAProxy 调度算法">
+<meta property="og:url" content="https://www.geekcn.cn/haproxy/haproxy03/">
+<meta property="og:site_name" content="极客之旅">
+<meta property="og:description" content="Socat 工具socat 工具可以对服务器动态权重和其它状态进行调整 ​      查看 HAProxy 后端服务器权重  123# 查看 HAProxy 后端服务器权重[root@haproxy ~]# echo &quot;get weight www.web.com&#x2F;web01&quot; | socat stdio &#x2F;var&#x2F;lib&#x2F;haproxy&#x2F;haproxy.sock 1 (ini">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png">
+<meta property="article:published_time" content="2023-03-27T08:45:23.305Z">
+<meta property="article:modified_time" content="2023-03-27T09:09:14.609Z">
+<meta property="article:author" content="jet lag">
+<meta property="article:tag" content="负载均衡">
+<meta property="article:tag" content="HAProxy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png"><link rel="shortcut icon" href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/cloud.svg"><link rel="canonical" href="https://www.geekcn.cn/haproxy/haproxy03/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HAProxy 调度算法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-27 17:09:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/black/pace-theme-center-circle.css"/><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">极客之旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">HAProxy 调度算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-27T08:45:23.305Z" title="发表于 2023-03-27 16:45:23">2023-03-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-27T09:09:14.609Z" title="更新于 2023-03-27 17:09:14">2023-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/HAProxy-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">HAProxy 负载均衡</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Socat-工具"><a href="#Socat-工具" class="headerlink" title="Socat 工具"></a>Socat 工具</h1><p>socat 工具可以对服务器动态权重和其它状态进行调整</p>
+<p>​    </p>
+<ul>
+<li>查看 HAProxy 后端服务器权重</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看 HAProxy 后端服务器权重</span></span><br><span class="line">[root@haproxy ~]<span class="comment"># echo &quot;get weight www.web.com/web01&quot; | socat stdio /var/lib/haproxy/haproxy.sock </span></span><br><span class="line">1 (initial 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 HAProxy 后端服务器权重</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 HAProxy 后端服务器权重为 2</span></span><br><span class="line">[root@haproxy ~]<span class="comment"># echo &quot;set weight www.web.com/web01 2&quot; | socat stdio /var/lib/haproxy/haproxy.sock </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 HAProxy 后端服务器权重</span></span><br><span class="line">[root@haproxy ~]<span class="comment"># echo &quot;get weight www.web.com/web01&quot; | socat stdio /var/lib/haproxy/haproxy.sock </span></span><br><span class="line">2 (initial 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>禁用 HAProxy 后端服务器</p>
+<p>平滑修改，即禁用后不会影响已连接用户的请求</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 HAProxy 后端服务器权重为 0。实现禁用后端服务器</span></span><br><span class="line">[root@haproxy ~]<span class="comment"># echo &quot;set weight www.web.com/web01 0&quot; | socat stdio /var/lib/haproxy/haproxy.sock </span></span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="HAProxy-静态算法"><a href="#HAProxy-静态算法" class="headerlink" title="HAProxy 静态算法"></a>HAProxy 静态算法</h1><p>静态算法：按照事先定义好的规则轮询进行调度，不关注后端服务器的工作负载、连接数和响应速度等，且无法通过 socat 工具实时动态修改权重（只能为 0% 和 100%，不支持其它值），若想修改为其它值，修改后只能通过重启 HAProxy 生效</p>
+<p>​    </p>
+<p>​    </p>
+<h2 id="static-rr-算法"><a href="#static-rr-算法" class="headerlink" title="static-rr 算法"></a>static-rr 算法</h2><p><em>static-rr（Static Round Robin）</em>：基于权重的轮询调度，将新的连接根据权重按照顺序分配给每个后端服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">backend mybackend</span><br><span class="line">      balance static-rr</span><br><span class="line">      server server1 192.168.1.1:80 check weight 2</span><br><span class="line">      server server2 192.168.1.2:80 check weight 4</span><br></pre></td></tr></table></figure>
+<p>HAProxy 将使用 static-rr 调度算法将网络流量分配给两个服务器（server1, server2）。并将新的连接根据权重按照顺序分配给每个后端服务器</p>
+<p>​    </p>
+<p>​    </p>
+<h2 id="first-算法"><a href="#first-算法" class="headerlink" title="first 算法"></a>first 算法</h2><p><em>first（先来先服务算法）</em>：根据服务器在列表中的位置，自上而下进行调度。当第一台服务器连接数达到上限时，新请求才会分配给下一台服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">backend mybackend</span><br><span class="line">      balance first</span><br><span class="line">      server server1 192.168.1.1:80 check maxconn 100</span><br><span class="line">      server server2 192.168.1.2:80 check </span><br></pre></td></tr></table></figure>
+<p>HAProxy 将使用 first 调度算法将网络流量分配给两个服务器（server1, server2）。将连接请求分配到 server1 上，当 server1 的并发连接数达到 100 后，才将新的请求往 server2 上分配</p>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="HAProxy-动态算法"><a href="#HAProxy-动态算法" class="headerlink" title="HAProxy 动态算法"></a>HAProxy 动态算法</h1><p>动态算法：基于后端服务器状态进行适当调整，新请求将优先调度至当前负载较低的服务器，且权重可以在 HAProxy 运行时动态调整，无需重启</p>
+<p>​    </p>
+<p>​    </p>
+<h2 id="roundrobin-算法"><a href="#roundrobin-算法" class="headerlink" title="roundrobin 算法"></a>roundrobin 算法</h2><p><em>roundrobin（轮询调度算法）</em></p>
+<ul>
+<li>基于权重的轮询动态调度算法，将新的连接根据权重按照顺序分配给每个后端服务器，支持权重的运行时调整。<strong>HAProxy 默认的调度算法</strong></li>
+<li>HAProxy 中的 roundrobin 支持慢启动（新加的服务器会逐渐增加转发数），其每个 backend 中最多支持 4095 个后端服务器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">backend mybackend</span><br><span class="line">	balance roundrobin</span><br><span class="line">	server server1 192.168.1.1:80 check weight 2</span><br><span class="line">	server server2 192.168.1.2:80 check weight 4</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>支持权重的动态调整</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改后端服务器权重为 2</span></span><br><span class="line">[root@haproxy ~]<span class="comment"># echo &quot;set weight mybackend/server1 10&quot; | socat stdio /var/lib/haproxy/haproxy.sock </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 HAProxy 后端服务器权重</span></span><br><span class="line">[root@haproxy ~]<span class="comment"># echo &quot;get weight mybackend/server1&quot; | socat stdio /var/lib/haproxy/haproxy.sock </span></span><br><span class="line">10 (initial 1)</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h2 id="leastconn-算法"><a href="#leastconn-算法" class="headerlink" title="leastconn 算法"></a>leastconn 算法</h2><p>leastconn（加权的最少连接调度算法）：将请求发送到当前连接数最少的服务器上，以平衡服务器负载，支持权重的运行时调整和慢启动。适合长连接的场景使用，比如：MySQL、Redis 等场景</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">backend mybackend</span><br><span class="line">    balance leastconn</span><br><span class="line">    server server1 192.168.1.1:80 check weight 2</span><br><span class="line">	server server2 192.168.1.2:80 check weight 4</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h2 id="random-算法"><a href="#random-算法" class="headerlink" title="random 算法"></a>random 算法</h2><p>random：根据权重随机选择一个服务器进行请求转发。服务器的权重值越高，它被选中的概率就越大，当有请求到达 HAProxy 时，从可用的服务器列表中随机选择一个服务器，根据该服务器的权重值来计算选择该服务器的概率</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">backend myapp</span><br><span class="line">    balance random</span><br><span class="line">    server server1 192.168.1.1:80 weight 5</span><br><span class="line">    server server2 192.168.1.2:80 weight 3</span><br><span class="line">    server server3 192.168.1.3:80 weight 2</span><br></pre></td></tr></table></figure>
+<p>HAProxy 会使用 “random” 算法从三个服务器中随机选择一个进行请求转发。其中，服务器 server1 的权重值最高，所以它被选中的概率最大，而服务器 server3 的权重值最低，被选中的概率最小</p>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="HAProxy-其它算法"><a href="#HAProxy-其它算法" class="headerlink" title="HAProxy 其它算法"></a>HAProxy 其它算法</h1><p>其它算法即可作为静态算法，又可以通过选项成为动态算法</p>
+<p>​    </p>
+<p>​    </p>
+<h2 id="Source-算法"><a href="#Source-算法" class="headerlink" title="Source 算法"></a>Source 算法</h2><p><em>Source 算法</em>：根据客户端的 IP 以及端口号进行哈希计算，并将请求转发到后端服务器，后续同一个源地址请求将被转发至同一个后端服务器，确保同一客户端的所有请求都被分配到同一后端服务器上，从而实现会话保持和负载均衡</p>
+<p>​    </p>
+<p>哈希调度算法会根据客户端 IP 地址的哈希值将请求分配给服务器，这样相同的客户端 IP 地址将总是被分配到同一个服务器上。这种算法适用于需要保持会话状态的应用程序，例如 Web 应用程序，但可能会导致某些服务器负载过高</p>
+<p>​    </p>
+<blockquote>
+<p>Source 算法默认为 map-base 取模法，为静态方式，可以通过 <code>hash-type</code> 选项更改为一致性哈希</p>
+</blockquote>
+<p>​    </p>
+<p>​    </p>
+<h3 id="map-base-取模"><a href="#map-base-取模" class="headerlink" title="map-base 取模"></a>map-base 取模</h3><p>根据客户端的 IP 以及端口号进行哈希，再基于后端服务器的总权重取模，而后 HAProxy 会将哈希值映射到后端服务器。如果该服务器处于活动状态，则请求将被发送到该服务器</p>
+<blockquote>
+<ul>
+<li>此方法为静态方法，不支持在线调整权重，不支持慢启动</li>
+<li>缺点是当服务器的总权重发生变化时（有服务器上线或下线），都会因总权重发生变化而导致调度结果整体改变</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">backend myapp</span><br><span class="line">	balance <span class="built_in">source</span>				<span class="comment"># source 算法</span></span><br><span class="line">	hash-type map-based			<span class="comment"># map-base 取模法。默认值，可以不写</span></span><br><span class="line">	server web1 192.168.1.1:80 check</span><br><span class="line">	server web2 192.168.1.2:80 check</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h3 id="一致性-Hash"><a href="#一致性-Hash" class="headerlink" title="一致性 Hash"></a>一致性 Hash</h3><p>一致性哈希与 map-base 取模法类似，但是一致性哈希算法可以确保在添加或删除服务器时，只有少量的请求需要重新映射，从而减少了哈希冲突和服务器负载不均的问题</p>
+<blockquote>
+<ul>
+<li>此方法为动态方法，支持使用 socat 等工具进行在线权重调整，支持慢启动</li>
+<li>当服务器的总权重发生变化时，对调度结果影响是局部的，不会引起大的变动</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">backend myapp</span><br><span class="line">	balance <span class="built_in">source</span>				<span class="comment"># source 算法</span></span><br><span class="line">	hash-type consistent			<span class="comment"># 一致性哈希</span></span><br><span class="line">	server web1 192.168.1.1:80 check</span><br><span class="line">	server web2 192.168.1.2:80 check</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h2 id="uri-算法"><a href="#uri-算法" class="headerlink" title="uri 算法"></a>uri 算法</h2><p>基于用户请求的 URI 做哈希运算，再将哈希结果对总权重进行取模后，根据哈希值将请求分配给后端服务器，访问同一个 URI 将调度到同一个后端服务器上。适用后端为缓存服务器场景</p>
+<blockquote>
+<p>uri 算法默认为 map-base 取模法，为静态方式，可以通过 <code>hash-type</code> 选项更改为一致性哈希</p>
+</blockquote>
+<p>​    </p>
+<p>map-base 取模</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">backend myapp</span><br><span class="line">	balance uri				<span class="comment"># uri 算法</span></span><br><span class="line">	<span class="comment"># hash-type map-based</span></span><br><span class="line">	<span class="comment"># hash-type consistent</span></span><br><span class="line">	server web1 192.168.1.1:80 check</span><br><span class="line">	server web2 192.168.1.2:80 check</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h2 id="url-param-算法"><a href="#url-param-算法" class="headerlink" title="url_param 算法"></a>url_param 算法</h2><p>基于用户请求 URI 参数部分中的一个参数 Key 与 Value 值做哈希计算，再将哈希结果对总权重进行取模后，根据哈希值将请求分配给后端服务器</p>
+<blockquote>
+<p>url_param 算法默认为 map-base 取模法，为静态方式，可以通过 <code>hash-type</code> 选项更改为一致性哈希</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">backend myapp</span><br><span class="line">	balance url_param demo			<span class="comment"># usl_param 算法。基于 URI 中的 demo 参数做哈希计算</span></span><br><span class="line">	<span class="comment"># hash-type map-based</span></span><br><span class="line">	<span class="comment"># hash-type consistent</span></span><br><span class="line">	server web1 192.168.1.1:80 check</span><br><span class="line">	server web2 192.168.1.2:80 check</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>访问测试：基于下列 URI 中的参数 demo 的值进行哈希运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@internet ~]<span class="comment"># curl www.web.com?demo=1</span></span><br><span class="line">Weclome to web02</span><br><span class="line"></span><br><span class="line">[root@internet ~]<span class="comment"># curl www.web.com?demo=2</span></span><br><span class="line">Weclome to web01</span><br><span class="line"></span><br><span class="line">[root@internet ~]<span class="comment"># curl www.web.com?demo=3</span></span><br><span class="line">Weclome to web02</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<h2 id="hdr-算法"><a href="#hdr-算法" class="headerlink" title="hdr 算法"></a>hdr 算法</h2><p>基于用户请求的主机头部（Header）中的指定信息做哈希计算，再将哈希结果对总权重进行取模后，根据哈希值将请求分配给后端服务器</p>
+<blockquote>
+<p>hdr 算法默认为 map-base 取模法，为静态方式，可以通过 <code>hash-type</code> 选项更改为一致性哈希</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">backend myapp</span><br><span class="line">	balance hdr(Host)			<span class="comment"># had 算法。基于用户请求中主机头的 Host 信息做哈希计算</span></span><br><span class="line">	<span class="comment"># hash-type map-based</span></span><br><span class="line">	<span class="comment"># hash-type consistent</span></span><br><span class="line">	server web1 192.168.1.1:80 check</span><br><span class="line">	server web2 192.168.1.2:80 check</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>访问测试：在 HAProxy 配置文件中配置基于用户请求中主机头的 Host 信息做哈希计算。实现访问不同域名调度到不同的后端服务器上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看主机头。Host 为 www.web.com</span></span><br><span class="line">[root@internet ~]<span class="comment"># curl -v www.web.com</span></span><br><span class="line">&gt; GET / HTTP/1.1</span><br><span class="line">&gt; Host: www.web.com</span><br><span class="line">&gt; User-Agent: curl/7.68.0</span><br><span class="line">&gt; Accept: */*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问</span></span><br><span class="line">[root@internet ~]<span class="comment"># curl www.web.com</span></span><br><span class="line">Weclome to web02</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment"># 查看主机头。Host 为 www.test.com</span></span><br><span class="line">[root@internet ~]<span class="comment"># curl -v www.test.com</span></span><br><span class="line">&gt; GET / HTTP/1.1</span><br><span class="line">&gt; Host: www.test.com</span><br><span class="line">&gt; User-Agent: curl/7.68.0</span><br><span class="line">&gt; Accept: */*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问</span></span><br><span class="line">[root@internet ~]<span class="comment"># curl www.test.com</span></span><br><span class="line">Weclome to web07</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="算法总结"><a href="#算法总结" class="headerlink" title="算法总结"></a>算法总结</h1><p>生产环境中较多数场景下使用 HAProxy 默认的调度算法：roundrobin 基于权重的轮询动态调度算法。uri、url_param、hdr 算法也相对较为常用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 静态算法</span></span><br><span class="line">static-rr	---------&gt;		TCP/HTTP  </span><br><span class="line">first		---------&gt;		TCP/HTTP  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 动态算法</span></span><br><span class="line">roundrobin	---------&gt;		TCP/HTTP </span><br><span class="line">leastconn	---------&gt;		TCP/HTTP </span><br><span class="line">random		---------&gt;		TCP/HTTP</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它算法</span></span><br><span class="line"><span class="built_in">source</span>		---------&gt;		TCP/HTTP</span><br><span class="line">uri		---------&gt;		HTTP</span><br><span class="line">url_param	---------&gt;		HTTP     </span><br><span class="line">hdr		---------&gt;		HTTP</span><br></pre></td></tr></table></figure>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn">jet lag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn/haproxy/haproxy03/">https://www.geekcn.cn/haproxy/haproxy03/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.geekcn.cn" target="_blank">极客之旅</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" alt="支付宝支付"/></a><div class="post-qr-code-desc">支付宝支付</div></li></ul></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/haproxy/haproxy/" title="HAProxy 负载均衡"><img class="cover" src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/cover/HAProxy.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-27</div><div class="title">HAProxy 负载均衡</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Socat-%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">Socat 工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HAProxy-%E9%9D%99%E6%80%81%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">HAProxy 静态算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#static-rr-%E7%AE%97%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">static-rr 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#first-%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">first 算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HAProxy-%E5%8A%A8%E6%80%81%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">HAProxy 动态算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#roundrobin-%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">roundrobin 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#leastconn-%E7%AE%97%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">leastconn 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#random-%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text">random 算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HAProxy-%E5%85%B6%E5%AE%83%E7%AE%97%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">HAProxy 其它算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Source-%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">Source 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#map-base-%E5%8F%96%E6%A8%A1"><span class="toc-number">4.1.1.</span> <span class="toc-text">map-base 取模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-Hash"><span class="toc-number">4.1.2.</span> <span class="toc-text">一致性 Hash</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uri-%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">uri 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url-param-%E7%AE%97%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">url_param 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hdr-%E7%AE%97%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text">hdr 算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">算法总结</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: #2F4F4F"><div id="footer-wrap"><div class="footer_custom_text">技术的道路没有尽头</div><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">本网站由 <img src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/ypy.png" width="50px"> 提供 CDN 加速/云存储服务</a></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/utils.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/main.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/search/local-search.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.bootcdn.net/ajax/libs/mermaid/9.1.7/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async src="https://cdn.jsdelivr.net/npm/js-heo@1.0.13/categoryBar/categoryBar.js" data-pjax=”” defer=””></script><script async src="/js/grayscale.js"></script><script async src="/js/background.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/click-heart.min.js" async="async" mobile="false"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

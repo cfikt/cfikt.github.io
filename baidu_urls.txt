@@ -1,7 +1,6 @@
+https://www.geekcn.cn/haproxy/haproxy/
+https://www.geekcn.cn/k8s/k8s/
 https://www.geekcn.cn/ops/shell/
-https://www.geekcn.cn/k8s/install02/
-https://www.geekcn.cn/k8s/install01/
-https://www.geekcn.cn/k8s/k8s01/
 https://www.geekcn.cn/docker/docker/
 https://www.geekcn.cn/tasks/task/
 https://www.geekcn.cn/linux/linux01/
