@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Kubernetes 面试题 | 极客之旅</title><meta name="robots" content="noindex"><meta name="author" content="jet lag"><meta name="copyright" content="jet lag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="什么是 KubernetesKubernetes 是一个开源的容器编排平台，用于管理和部署容器化应用程序。为容器化的应用提供部署运行、资源调度、服务发现和动态伸缩等一系列完整功能，提高了大规模容器集群管理的便捷性 ​     ​     Kubernetes 组件控制节点是 Kubernetes 集群中的管理节点，负责整个集群的管理和控制：  API Server：声明式 API，为 Kubern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes 面试题">
+<meta property="og:url" content="https://www.geekcn.cn/work/k8s/">
+<meta property="og:site_name" content="极客之旅">
+<meta property="og:description" content="什么是 KubernetesKubernetes 是一个开源的容器编排平台，用于管理和部署容器化应用程序。为容器化的应用提供部署运行、资源调度、服务发现和动态伸缩等一系列完整功能，提高了大规模容器集群管理的便捷性 ​     ​     Kubernetes 组件控制节点是 Kubernetes 集群中的管理节点，负责整个集群的管理和控制：  API Server：声明式 API，为 Kubern">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png">
+<meta property="article:published_time" content="2023-03-27T12:14:31.524Z">
+<meta property="article:modified_time" content="2023-03-27T12:23:28.556Z">
+<meta property="article:author" content="jet lag">
+<meta property="article:tag" content="极客之旅, 云计算, 运维, Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png"><link rel="shortcut icon" href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/cloud.svg"><link rel="canonical" href="https://www.geekcn.cn/work/k8s/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.bootcdn.net/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Kubernetes 面试题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-27 20:23:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/black/pace-theme-center-circle.css"/><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">极客之旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Kubernetes 面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-27T12:14:31.524Z" title="发表于 2023-03-27 20:14:31">2023-03-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-27T12:23:28.556Z" title="更新于 2023-03-27 20:23:28">2023-03-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="什么是-Kubernetes"><a href="#什么是-Kubernetes" class="headerlink" title="什么是 Kubernetes"></a>什么是 Kubernetes</h1><p>Kubernetes 是一个开源的容器编排平台，用于管理和部署容器化应用程序。为容器化的应用提供部署运行、资源调度、服务发现和动态伸缩等一系列完整功能，提高了大规模容器集群管理的便捷性</p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="Kubernetes-组件"><a href="#Kubernetes-组件" class="headerlink" title="Kubernetes 组件"></a>Kubernetes 组件</h1><p>控制节点是 Kubernetes 集群中的管理节点，负责整个集群的管理和控制：</p>
+<ul>
+<li><em>API Server：</em>声明式 API，为 Kubernetes 集群中各种资源对象的增删改查等操作提供了接口，用于接收和处理来自客户端的请求</li>
+<li><em>Kube-Controller-Manager：</em>控制器管理器，集群内部的的管理控制中心。负责执行各种控制器保证 Kubernetes 的正常运行，将 API 声明转化为具体的实现</li>
+<li><em>Kube-Scheduler：</em>调度器。为未完成绑定的 Pod 进行节点分配，负责集群的资源调度</li>
+<li><em>Etcd：</em>一个高可用的键值对存储系统。用于存储 Kubernetes 集群的所有配置信息和状态信息，是 Kubernetes 的后端数据库，主要用于配置共享和服务发现</li>
+</ul>
+<p>​    </p>
+<p>Kubernetes 工作节点组件</p>
+<ul>
+<li><em>Kubelet：</em>运行在每个 Worker 节点上，Pod 生命周期管理组件。负责接收并执行控制节点发来的指令，管理由调度器分配到当前节点上的 Pod 对象</li>
+<li><em>Container RunTime（容器进行时）：</em>负责镜像管理理及 Pod 和容器的真正运⾏，为 Kubernetes 创建的容器提供网络、通信、持久化存储等资源</li>
+<li><em>Kube Proxy：</em>运行在每个 Worker 节点之上。Service 功能在节点级的实现，具体来说就是把 Service 的定义转换为节点上的 Iptables 或 Ipvs 规则。核心功能是将到某个 Service 的访问请求转发到后端的多个 Pod 实例上</li>
+</ul>
+<p>​    </p>
+<p>​    </p>
+<h1 id="K8s-和-Docker-的关系"><a href="#K8s-和-Docker-的关系" class="headerlink" title="K8s 和 Docker 的关系"></a>K8s 和 Docker 的关系</h1><p>Docker 提供容器的生命周期和管理，而 Kubernetes 用于关联和编排在多个主机上运行的容器</p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="什么是-Pod"><a href="#什么是-Pod" class="headerlink" title="什么是 Pod"></a>什么是 Pod</h1><p>Pod 是 Kubernetes 中最小调度单元，是一个或多个容器的集合</p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="K8s-控制器"><a href="#K8s-控制器" class="headerlink" title="K8s 控制器"></a>K8s 控制器</h1><ul>
+<li><em>ReplicaSet（副本集）：</em>用于保证指定数量的 Pod 正常运行，并且在 Pod 出现故障或需要进行扩缩容时，自动创建或删除 Pod 副本</li>
+<li><em>Deployment（部署）：</em>用于管理 ReplicaSet 控制器，并且可以实现滚动更新和回滚等功能</li>
+<li><em>StatefulSet（有状态副本集）：</em>用于管理有状态的应用程序，保证 Pod 的唯一性、有序性和稳定性</li>
+<li><em>DaemonSet（守护进程集）：</em>用于在每个节点上运行一个 Pod 副本，通常用于运行一些守护进程程序</li>
+<li><em>Job（作业）：</em>用于运行一次性任务，例如批处理任务、数据处理等</li>
+<li><em>CronJob（定时任务）：</em>用于周期性地运行一次性任务，例如定时备份、定时清理等</li>
+</ul>
+<p>​    </p>
+<p>​    </p>
+<h1 id="什么是-Service"><a href="#什么是-Service" class="headerlink" title="什么是 Service"></a>什么是 Service</h1><p>在 Kubernetes (K8s) 中，Service 是一种抽象，用于定义一组 Pod 的逻辑网络端点，Service 有一个唯一的 IP 地址和端口，这个 IP 地址和端口将作为该 Service 的访问入口，客户端可以使用这个 IP 地址和端口来访问 Service</p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="Service-类型"><a href="#Service-类型" class="headerlink" title="Service 类型"></a>Service 类型</h1><ol>
+<li><em>ClusterIP：</em>默认的 Service 类型，只能在集群内部使用，为 Service 分配一个虚拟 IP 地址，通过这个 IP 地址可以访问 Service 中的 Pod</li>
+<li><em>NodePort：</em>为 Service 暴露一个固定的端口号，可以通过节点的 IP 地址和这个端口号来访问 Service 中的 Pod。并且可以被外部网络访问</li>
+<li><em>LoadBalancer：</em>通过云供应商的负载均衡器（如 AWS ELB、GCP LoadBalancer 等）来暴露 Service，这样可以将请求负载均衡到多个节点上，提高应用程序的可用性和可扩展性。</li>
+<li>ExternalName：将 Service 映射到一个集群外部的 DNS 名称，并且返回这个 DNS 名称的 IP 地址。用于访问外部服务，例如数据库、缓存等</li>
+</ol>
+<p>​    </p>
+<p>​    </p>
+<h1 id="ipvs-和-iptables"><a href="#ipvs-和-iptables" class="headerlink" title="ipvs 和 iptables"></a>ipvs 和 iptables</h1><p>iptables 与 IPVS 都是基于内核实现的，两者的定位不同，iptables 是为防火墙而设计的，IPVS 则专门用于高性能负载均衡</p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="K8s-的探针类型"><a href="#K8s-的探针类型" class="headerlink" title="K8s 的探针类型"></a>K8s 的探针类型</h1><p>Kubernetes 有三种探针类型：启动探针、存活探针和就绪探针</p>
+<ul>
+<li><em>启动探针：</em>探测容器启动过程中是否发生问题，只运行在容器初始化期间</li>
+<li><em>存活探针：</em>对容器内的进程进行探测，检测容器是否正常运行</li>
+<li><em>就绪探针：</em>探测容器内服务是否正常工作</li>
+</ul>
+<p>​    </p>
+<p>​    </p>
+<h1 id="K8s-探测方法"><a href="#K8s-探测方法" class="headerlink" title="K8s 探测方法"></a>K8s 探测方法</h1><ol>
+<li>在容器内执行指定命令，根据命令结果的状态码判定探测结果</li>
+<li>根据相应 TCP 套接字连接建立状态判定。对指定端口上容器的 IP 地址进行 TCP 检查，如果端口打开，则认为诊断成功</li>
+<li>根据指定 HTTP/HTTPS 服务 URL 的响应结果判定。对指定的端口和路径上容器的 IP 地址执行 HTTP Get 请求，如果响应的状态码大于等于 200 且小于 400，则认为是诊断成功</li>
+</ol>
+<p>​    </p>
+<p>​    </p>
+<h1 id="Pod-状态"><a href="#Pod-状态" class="headerlink" title="Pod 状态"></a>Pod 状态</h1><p>在 Kubernetes 中，Pod 可以处于以下几种不同的状态：</p>
+<ol>
+<li><em>Pending（等待中）：</em>Pod 已经被 Kubernetes API 接受，但是还没有被调度到具体的节点上运行</li>
+<li><em>Running（运行中）：</em>Pod 已经被调度到节点上，并且其中至少一个容器正在运行</li>
+<li><em>Succeeded（成功）：</em>Pod 中的所有容器都已经成功地运行并且已经退出</li>
+<li><em>Failed（失败）：</em>Pod 中至少有一个容器已经退出，并且退出状态是非零状态</li>
+<li><em>Unknown（未知）：</em>Pod 的状态无法被确定，通常是由于与 Pod 相关的节点或者控制器出现了故障</li>
+</ol>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn">jet lag</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.geekcn.cn/work/k8s/">https://www.geekcn.cn/work/k8s/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.geekcn.cn" target="_blank">极客之旅</a>！</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="https://cdn1.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/wechat.png" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/alipay.png" alt="支付宝支付"/></a><div class="post-qr-code-desc">支付宝支付</div></li></ul></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Kubernetes"><span class="toc-number">1.</span> <span class="toc-text">什么是 Kubernetes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kubernetes-%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">Kubernetes 组件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K8s-%E5%92%8C-Docker-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.</span> <span class="toc-text">K8s 和 Docker 的关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Pod"><span class="toc-number">4.</span> <span class="toc-text">什么是 Pod</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K8s-%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">K8s 控制器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Service"><span class="toc-number">6.</span> <span class="toc-text">什么是 Service</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Service-%E7%B1%BB%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text">Service 类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ipvs-%E5%92%8C-iptables"><span class="toc-number">8.</span> <span class="toc-text">ipvs 和 iptables</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K8s-%E7%9A%84%E6%8E%A2%E9%92%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">9.</span> <span class="toc-text">K8s 的探针类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K8s-%E6%8E%A2%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-number">10.</span> <span class="toc-text">K8s 探测方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pod-%E7%8A%B6%E6%80%81"><span class="toc-number">11.</span> <span class="toc-text">Pod 状态</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: #2F4F4F"><div id="footer-wrap"><div class="footer_custom_text">技术的道路没有尽头</div><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">本网站由 <img src="https://cdn1.tianli0.top/gh/cfikt/blogfiles@master/img/ypy.png" width="50px"> 提供 CDN 加速/云存储服务</a></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/utils.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/main.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.5.1/js/search/local-search.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.bootcdn.net/ajax/libs/mermaid/9.1.7/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async src="https://cdn.jsdelivr.net/npm/js-heo@1.0.13/categoryBar/categoryBar.js" data-pjax=”” defer=””></script><script async src="/js/grayscale.js"></script><script async src="/js/background.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.bootcdn.net/ajax/libs/butterfly-extsrc/1.1.3/click-heart.min.js" async="async" mobile="false"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
