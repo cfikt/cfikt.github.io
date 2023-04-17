@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL 面试题 | 极客之旅</title><meta name="robots" content="noindex"><meta name="author" content="jet lag"><meta name="copyright" content="jet lag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="InnoDB 与 MyISAM 的区别 InnoDB 支持事务、行级锁、外键约束等特性，适用于需要大量写入和更新的应用。而 MyISAM 则不支持事务和行级锁，适用于读取频繁的应用   InnoDB 支持事务，MyISAM 不支持事务 InnoDB 支持外键，MyISAM 不支持外键 InnoDB 支持 MVCC（多版本并发控制），MyISAM 不支持 InnoDB 支持表、行级锁，而 MyISA">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL 面试题 | 极客之旅</title><meta name="robots" content="noindex"><meta name="author" content="jet lag"><meta name="copyright" content="jet lag"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="InnoDB 与 MyISAM 的区别 InnoDB 支持事务、行级锁、外键约束等特性，适用于需要大量写入和更新的场景。而 MyISAM 则不支持事务和行级锁，适用于读取频繁的场景   InnoDB 支持事务，MyISAM 不支持事务 InnoDB 支持外键，MyISAM 不支持外键 InnoDB 支持 MVCC（多版本并发控制），MyISAM 不支持 InnoDB 支持表、行级锁，而 MyISA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 面试题">
 <meta property="og:url" content="https://www.geekcn.cn/work/mysql/">
 <meta property="og:site_name" content="极客之旅">
-<meta property="og:description" content="InnoDB 与 MyISAM 的区别 InnoDB 支持事务、行级锁、外键约束等特性，适用于需要大量写入和更新的应用。而 MyISAM 则不支持事务和行级锁，适用于读取频繁的应用   InnoDB 支持事务，MyISAM 不支持事务 InnoDB 支持外键，MyISAM 不支持外键 InnoDB 支持 MVCC（多版本并发控制），MyISAM 不支持 InnoDB 支持表、行级锁，而 MyISA">
+<meta property="og:description" content="InnoDB 与 MyISAM 的区别 InnoDB 支持事务、行级锁、外键约束等特性，适用于需要大量写入和更新的场景。而 MyISAM 则不支持事务和行级锁，适用于读取频繁的场景   InnoDB 支持事务，MyISAM 不支持事务 InnoDB 支持外键，MyISAM 不支持外键 InnoDB 支持 MVCC（多版本并发控制），MyISAM 不支持 InnoDB 支持表、行级锁，而 MyISA">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn3.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png">
 <meta property="article:published_time" content="2023-03-27T09:36:14.020Z">
-<meta property="article:modified_time" content="2023-03-27T17:59:25.277Z">
+<meta property="article:modified_time" content="2023-04-16T17:24:24.241Z">
 <meta property="article:author" content="jet lag">
 <meta property="article:tag" content="极客之旅, 云计算, 运维, Linux">
 <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-03-28 01:59:25'
+  postUpdate: '2023-04-17 01:24:24'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,8 +142,8 @@
       }
     }
     detectApple()
-    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-circle.css"/><script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn3.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">极客之旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL 面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-27T09:36:14.020Z" title="发表于 2023-03-27 17:36:14">2023-03-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-27T17:59:25.277Z" title="更新于 2023-03-28 01:59:25">2023-03-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="InnoDB-与-MyISAM-的区别"><a href="#InnoDB-与-MyISAM-的区别" class="headerlink" title="InnoDB 与 MyISAM 的区别"></a>InnoDB 与 MyISAM 的区别</h1><blockquote>
-<p>InnoDB 支持事务、行级锁、外键约束等特性，适用于需要大量写入和更新的应用。而 MyISAM 则不支持事务和行级锁，适用于读取频繁的应用</p>
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/themes/black/pace-theme-center-circle.css"/><script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn3.tianli0.top/gh/cfikt/blogfiles@1.1/img/next01.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">极客之旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL 面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-27T09:36:14.020Z" title="发表于 2023-03-27 17:36:14">2023-03-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-16T17:24:24.241Z" title="更新于 2023-04-17 01:24:24">2023-04-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="InnoDB-与-MyISAM-的区别"><a href="#InnoDB-与-MyISAM-的区别" class="headerlink" title="InnoDB 与 MyISAM 的区别"></a>InnoDB 与 MyISAM 的区别</h1><blockquote>
+<p>InnoDB 支持事务、行级锁、外键约束等特性，适用于需要大量写入和更新的场景。而 MyISAM 则不支持事务和行级锁，适用于读取频繁的场景</p>
 </blockquote>
 <ul>
 <li>InnoDB 支持事务，MyISAM 不支持事务</li>
@@ -155,7 +155,11 @@
 </ul>
 <p>​    </p>
 <p>​    </p>
+<p>​    </p>
+<p>​    </p>
 <h1 id="什么是数据库事务"><a href="#什么是数据库事务" class="headerlink" title="什么是数据库事务"></a>什么是数据库事务</h1><p>数据库事务是一组数据库操作，这些操作组成一个工作单元，要么全部执行成功，要么全部失败回滚。事务是确保数据完整性和一致性的一种机制</p>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h1><ol>
@@ -164,6 +168,8 @@
 <li><em>隔离性（Isolation）：</em>多个事务并发执行时，每个事务都应该感觉不到其他事务的存在，即事务之间相互独立，互不干扰</li>
 <li><em>持久性（Durability）：</em>事务一旦提交，对数据库中的数据的改变将永久保存在数据库中</li>
 </ol>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="数据库的隔离基别"><a href="#数据库的隔离基别" class="headerlink" title="数据库的隔离基别"></a>数据库的隔离基别</h1><p>数据库的隔离级别是指在多个事务并发访问数据库时，数据库管理系统为了保证事务的隔离性而采取的一种措施，数据库的隔离级别决定了每个事务所能看到数据的程度和受到影响的程度，其主要目的是避免数据读取和更新操作时出现的问题</p>
@@ -177,6 +183,8 @@
 </ol>
 <p>​    </p>
 <p>​    </p>
+<p>​    </p>
+<p>​    </p>
 <h1 id="脏读、不可重复读与幻读"><a href="#脏读、不可重复读与幻读" class="headerlink" title="脏读、不可重复读与幻读"></a>脏读、不可重复读与幻读</h1><ul>
 <li><em>脏读（Dirty Read）：</em>指一个事务读取了另一个事务未提交的数据时，就出现了脏读。如果这个事务回滚或者修改了数据，那么读取到的数据就是无效的或者错误的</li>
 <li><em>不可重复读（Non-repeatable Read）：</em>同一个事务内，由于其他事务对数据的修改，导致多次读取同一数据时得到的结果不一致</li>
@@ -184,23 +192,31 @@
 </ul>
 <p>​    </p>
 <p>​    </p>
-<h1 id="什么是-MySQL-主从复制"><a href="#什么是-MySQL-主从复制" class="headerlink" title="什么是 MySQL 主从复制"></a>什么是 MySQL 主从复制</h1><p>MySQL 主从复制是一种数据复制技术，它可以将一个 MySQL 数据库的数据复制到另一个 MySQL 数据库中。其中，主库是数据源，从库是数据目标，主库将数据改变记录到二进制日志中，从库读取二进制日志并应用这些改变，以保证从库中的数据与主库中的数据保持一致</p>
+<p>​    </p>
+<p>​    </p>
+<h1 id="什么是-MySQL-主从复制"><a href="#什么是-MySQL-主从复制" class="headerlink" title="什么是 MySQL 主从复制"></a>什么是 MySQL 主从复制</h1><p>MySQL 主从复制是一种数据复制技术，它可以将一个 MySQL 数据库的数据复制到另一个 MySQL 数据库中。其中，主库是数据源，从库是数据目标，主库将数据改变记录到二进制日志中，从库读取二进制日志并应用这些改变，保证从库中的数据与主库中的数据保持一致</p>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="MySQL-主从复制的优点"><a href="#MySQL-主从复制的优点" class="headerlink" title="MySQL 主从复制的优点"></a>MySQL 主从复制的优点</h1><ul>
-<li>通过将读操作分配到从库，可以减轻主库的负载，提高系统的性能和可扩展性</li>
-<li>通过从库的冗余备份，可以提高数据的可靠性和容错能力</li>
-<li>可以使用从库进行数据分析、报表等操作，而不会影响主库的性能</li>
+<li>可以将读操作分配到从库，减轻主库的负载，提高系统性能</li>
+<li>通过从库的冗余备份，可以提高数据的可靠性和容错性</li>
+<li>可以对从库进行数据分析、报表等操作，而不会影响主库的性能</li>
 <li>可以实现数据的异地备份，以防止数据灾难</li>
 </ul>
 <p>​    </p>
 <p>​    </p>
+<p>​    </p>
+<p>​    </p>
 <h1 id="MySQL-主从复制的缺点"><a href="#MySQL-主从复制的缺点" class="headerlink" title="MySQL 主从复制的缺点"></a>MySQL 主从复制的缺点</h1><ul>
-<li>从库的数据可能与主库的数据存在一定的延迟，这可能导致数据不一致</li>
+<li>从库的数据可能与主库的数据存在一定的延迟，导致数据不一致</li>
 <li>主库的写操作需要同步到从库，这可能会影响主库的性能</li>
 <li>如果主库发生故障，需要手动切换到从库，这可能需要一定的时间和人工干预</li>
 <li>主从复制的配置和管理比较复杂，需要一定的技术水平和经验</li>
 </ul>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="主从复制可能会出现的问题"><a href="#主从复制可能会出现的问题" class="headerlink" title="主从复制可能会出现的问题"></a>主从复制可能会出现的问题</h1><p>主从复制可能会出现的问题：</p>
@@ -213,9 +229,11 @@
 <p>如何解决：</p>
 <ul>
 <li>使用主从复制的监控工具来监控主从复制的状态，及时发现并解决问题</li>
-<li>使用数据同步工具来解决主从数据不一致的问题</li>
 <li>使用延迟复制和半同步复制来解决主从数据库的延迟问题</li>
+<li>使用数据同步工具来解决主从数据不一致的问题</li>
 </ul>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="如何配置-MySQL-主从复制"><a href="#如何配置-MySQL-主从复制" class="headerlink" title="如何配置 MySQL 主从复制"></a>如何配置 MySQL 主从复制</h1><ul>
@@ -226,7 +244,11 @@
 </ul>
 <p>​    </p>
 <p>​    </p>
+<p>​    </p>
+<p>​    </p>
 <h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h1><p>索引是一种数据结构，就像是一本书的目录，使用索引可以快速定位到需要查询的数据，用于提高数据库查询效率</p>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="为什么要使用索引"><a href="#为什么要使用索引" class="headerlink" title="为什么要使用索引"></a>为什么要使用索引</h1><p>优点：</p>
@@ -241,22 +263,30 @@
 <p>​    </p>
 <p>缺点：</p>
 <ul>
-<li>占用额外空间，影响插入速度</li>
+<li>占用额外空间，影响数据的插入速度</li>
 </ul>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h1><p>MySQL 中有多种类型的索引，包括 B-tree 索引、哈希索引、全文索引等。B-tree 索引是最常用的一种索引类型，它可以用于加速基于范围查询的操作</p>
 <p>​    </p>
 <p>​    </p>
+<p>​    </p>
+<p>​    </p>
 <h1 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 聚簇索引：将数据和索引放到一起存储，索引就是主键，找到了索引就找到了数据</span><br><span class="line">- 非聚簇索引：将数据和索引分开存储，索引叶子节点存储的是指向数据行的地址，通过这个地址二次查询找到数据</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="如何优化索引"><a href="#如何优化索引" class="headerlink" title="如何优化索引"></a>如何优化索引</h1><ul>
 <li>在经常被查询的列上创建索引，特别是在数据表中的主键和外键上创建索引</li>
-<li>根据具体情况创建合适的索引类型，例如 B-tree 索引、哈希索引等。</li>
-<li>避免创建过多的索引，因为过多的索引会降低插入、更新和删除操作的性能。</li>
+<li>根据具体情况创建合适的索引类型，例如 B-tree 索引、哈希索引等</li>
+<li>避免创建过多的索引，因为过多的索引会数据降低插入、更新和删除操作的性能</li>
 <li>定期进行索引优化和重建操作，以保证索引的性能和稳定性</li>
 </ul>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="主键与外键"><a href="#主键与外键" class="headerlink" title="主键与外键"></a>主键与外键</h1><ul>
@@ -265,7 +295,11 @@
 </ul>
 <p>​    </p>
 <p>​    </p>
+<p>​    </p>
+<p>​    </p>
 <h1 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h1><p>在不影响其他事务的前提下备份和恢复数据库可以使用 XtraBackup 备份工具，XtraBackup 支持不锁表备份数据库，因此可以在备份时继续执行其它事务。同时，它还可以进行增量备份，只备份已更改的数据，可以大大减少备份时间</p>
+<p>​    </p>
+<p>​    </p>
 <p>​    </p>
 <p>​    </p>
 <h1 id="什么是数据库高可用"><a href="#什么是数据库高可用" class="headerlink" title="什么是数据库高可用"></a>什么是数据库高可用</h1><p>MySQL 数据库的高可用是指在 MySQL 数据库中使用多个节点来保证数据库的可用性和容错性，当一个节点故障时，其它节点可以自动接管它的工作，从而保证系统的正常运行</p>
